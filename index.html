@@ -171,10 +171,15 @@
   .detail-sizes{margin-bottom:20px;}
   .detail-sizes .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
   .detail-price{font-size:1.5rem;font-weight:700;color:var(--wine);margin-bottom:22px;}
-  @media (max-width:700px){
-    .detail-box{grid-template-columns:1fr;}
-    .detail-img img{min-height:240px;}
-  }
+  .medidas-tables{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .medida-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;}
+  .medida-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;margin:0 0 4px;}
+  .medida-card .sub{font-size:.85rem;color:var(--ink-soft);margin-bottom:16px;}
+  .medida-table{width:100%;border-collapse:collapse;font-size:.86rem;}
+  .medida-table th{background:var(--wine);color:#fff;padding:9px 6px;text-align:center;font-weight:600;font-size:.78rem;}
+  .medida-table td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line);}
+  .medida-table td:first-child{font-weight:700;color:var(--wine);}
+  .medida-note{font-size:.82rem;color:var(--ink-soft);margin-top:16px;line-height:1.5;}
   .product-body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1;}
   .product-name{font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:600;line-height:1.32;margin:0 0 4px;}
   .product-desc{font-size:.82rem;color:var(--ink-soft);margin:0 0 12px;}
@@ -255,6 +260,9 @@
     section{padding:52px 0;}
     .search-bar{flex-direction:column;align-items:stretch;}
     .size-filter{flex-wrap:wrap;}
+    .detail-box{grid-template-columns:1fr;}
+    .detail-img img{min-height:240px;}
+    .medidas-tables{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -396,6 +404,43 @@
 </section>
 
 <a id="medidas"></a>
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="kicker" style="justify-content:center;">📏 GUIA DE MEDIDAS</div>
+      <h2>Tabela de Medidas</h2>
+      <p>Confira as medidas em centímetros antes de escolher o tamanho. Meça uma peça que já veste bem e compare.</p>
+    </div>
+    <div class="medidas-tables">
+      <div class="medida-card">
+        <h3>Feminino</h3>
+        <div class="sub">Modelagem Baby Look (caimento justo)</div>
+        <table class="medida-table">
+          <tr><th>Tam</th><th>Largura</th><th>Comprimento</th><th>Busto</th><th>Manga</th></tr>
+          <tr><td>P</td><td>41 cm</td><td>55 cm</td><td>40 cm</td><td>15 cm</td></tr>
+          <tr><td>M</td><td>46 cm</td><td>60 cm</td><td>43 cm</td><td>17 cm</td></tr>
+          <tr><td>G</td><td>51 cm</td><td>64 cm</td><td>48 cm</td><td>18 cm</td></tr>
+          <tr><td>GG</td><td>55 cm</td><td>69 cm</td><td>51 cm</td><td>19 cm</td></tr>
+        </table>
+        <p class="medida-note">Largura = de axila a axila · Comprimento = do ombro até a barra.</p>
+      </div>
+      <div class="medida-card">
+        <h3>Masculino</h3>
+        <div class="sub">Modelagem Tradicional (caimento reto)</div>
+        <table class="medida-table">
+          <tr><th>Tam</th><th>Largura</th><th>Comprimento</th><th>Ombro</th><th>Manga</th></tr>
+          <tr><td>M</td><td>52 cm</td><td>71 cm</td><td>43 cm</td><td>21 cm</td></tr>
+          <tr><td>G</td><td>55 cm</td><td>76 cm</td><td>46 cm</td><td>22 cm</td></tr>
+          <tr><td>GG</td><td>60 cm</td><td>78 cm</td><td>49 cm</td><td>24 cm</td></tr>
+          <tr><td>XG</td><td>64 cm</td><td>81 cm</td><td>51 cm</td><td>27 cm</td></tr>
+        </table>
+        <p class="medida-note">Largura = de axila a axila · Ombro = de uma costura a outra.</p>
+      </div>
+    </div>
+    <p class="medida-note" style="text-align:center;margin-top:24px;">Infantil (P/M/G): peça pensada pro caimento confortável de crianças — em caso de dúvida entre dois tamanhos, fale com a gente pelo WhatsApp que ajudamos a escolher certo.</p>
+  </div>
+</section>
+
 <section id="duvidas">
   <div class="wrap">
     <div class="section-head center">
