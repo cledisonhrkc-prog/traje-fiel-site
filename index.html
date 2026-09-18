@@ -220,6 +220,55 @@
   .frete-opcao{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);}
   .frete-opcao:last-child{border-bottom:none;}
   .frete-erro{color:#b3261e;font-size:.82rem;margin-top:8px;}
+
+  /* ---------- Carrinho / Sacola ---------- */
+  .cart-btn{position:relative;background:var(--cream);border:1.5px solid var(--gold);color:var(--ink);font-weight:600;font-size:.86rem;padding:9px 16px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;}
+  .cart-badge{background:var(--wine);color:#fff;font-size:.7rem;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;}
+  .btn-addcart{background:var(--ink);color:#fff;border:none;border-radius:10px;padding:12px 0;font-size:.85rem;font-weight:600;text-align:center;display:block;width:100%;margin-top:8px;}
+  .btn-share{background:none;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.9rem;color:var(--ink-soft);width:100%;margin-top:8px;text-align:center;}
+  .card-actions-row{display:flex;gap:8px;}
+  .card-actions-row .btn-addcart{margin-top:0;flex:1;}
+  .card-actions-row .btn-share{margin-top:0;width:44px;flex-shrink:0;padding:10px 0;}
+
+  .cart-overlay,.checkout-overlay{position:fixed;inset:0;background:rgba(20,15,12,.72);z-index:110;display:none;align-items:flex-start;justify-content:flex-end;}
+  .cart-overlay.open,.checkout-overlay.open{display:flex;}
+  .cart-panel{background:#fff;width:100%;max-width:460px;height:100%;overflow-y:auto;padding:26px;position:relative;}
+  .cart-panel h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:20px;}
+  .cart-close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;background:var(--cream);border:1px solid var(--line);font-size:1.2rem;}
+  .cart-item{display:flex;gap:12px;border-bottom:1px solid var(--line);padding:14px 0;}
+  .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px;flex-shrink:0;}
+  .cart-item-info{flex:1;min-width:0;}
+  .cart-item-info .nome{font-weight:600;font-size:.9rem;margin-bottom:2px;}
+  .cart-item-info .meta{font-size:.78rem;color:var(--ink-soft);}
+  .cart-item-actions{display:flex;align-items:center;gap:8px;margin-top:6px;}
+  .cart-item-actions .qty-stepper button{width:26px;height:26px;font-size:.9rem;}
+  .cart-item-actions .qty-stepper span{width:26px;font-size:.85rem;}
+  .cart-item-remove{color:#b3261e;font-size:.78rem;background:none;border:none;text-decoration:underline;margin-left:auto;}
+  .cart-item-price{font-weight:700;color:var(--wine);font-size:.9rem;white-space:nowrap;}
+  .cart-empty{text-align:center;padding:60px 20px;color:var(--ink-soft);}
+  .cart-summary{margin-top:20px;padding-top:16px;border-top:2px solid var(--ink);}
+  .cart-summary-row{display:flex;justify-content:space-between;font-size:.92rem;margin-bottom:8px;}
+  .cart-summary-row.total{font-size:1.15rem;font-weight:700;color:var(--wine);}
+  .btn-checkout{background:var(--wine);color:#fff;border:none;border-radius:10px;padding:14px;font-size:.95rem;font-weight:700;width:100%;margin-top:16px;}
+
+  .checkout-panel{background:#fff;width:100%;max-width:560px;height:100%;overflow-y:auto;padding:26px;position:relative;}
+  .checkout-panel h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:6px;}
+  .checkout-step-label{font-size:.8rem;color:var(--ink-soft);margin-bottom:22px;}
+  .form-group{margin-bottom:16px;}
+  .form-group label{display:block;font-size:.82rem;color:var(--ink-soft);margin-bottom:6px;}
+  .form-group input,.form-group select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:8px;font-size:.9rem;font-family:inherit;}
+  .form-row{display:flex;gap:12px;}
+  .form-row .form-group{flex:1;}
+  .payment-options{display:flex;gap:10px;margin-bottom:20px;}
+  .payment-opt{flex:1;border:1.5px solid var(--line);border-radius:10px;padding:14px;text-align:center;cursor:pointer;font-size:.88rem;font-weight:600;}
+  .payment-opt.active{border-color:var(--wine);background:rgba(110,20,35,.06);color:var(--wine);}
+  .checkout-summary{background:var(--cream);border-radius:10px;padding:16px;margin:20px 0;font-size:.86rem;}
+  .checkout-summary-item{display:flex;justify-content:space-between;padding:4px 0;}
+  .btn-finalizar{background:#25D366;color:#fff;border:none;border-radius:10px;padding:15px;font-size:.98rem;font-weight:700;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .checkout-back{background:none;border:none;color:var(--ink-soft);font-size:.85rem;margin-bottom:16px;text-decoration:underline;}
+  @media (max-width:600px){
+    .cart-panel,.checkout-panel{max-width:100%;}
+  }
   .qty-stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
   .qty-stepper button{width:36px;height:36px;background:var(--cream);border:none;font-size:1.1rem;color:var(--ink);}
   .qty-stepper button:hover{background:var(--line);}
@@ -346,6 +395,7 @@
       <a class="navlink" href="#sobre">Sobre</a>
       <a class="navlink" href="#duvidas">Dúvidas</a>
       <a class="btn-outline" href="#medidas">Tabela de Medidas</a>
+      <button type="button" class="cart-btn" id="cartOpenBtn">🛍️ Sacola <span class="cart-badge" id="cartBadge">0</span></button>
       <a href="#" class="btn-wpp wpp-link">💬 Fale no WhatsApp</a>
     </nav>
   </div>
@@ -618,8 +668,71 @@
         <div id="freteResultado"></div>
       </div>
       <div class="detail-price" id="detailPrice"></div>
-      <a class="btn-buy" id="detailBuyBtn" target="_blank" rel="noopener">💬 Comprar no WhatsApp</a>
+      <div class="card-actions-row">
+        <button type="button" class="btn-addcart" id="detailAddCartBtn">🛍️ Adicionar à sacola</button>
+        <button type="button" class="btn-share" id="detailShareBtn" aria-label="Compartilhar">🔗</button>
+      </div>
+      <a class="btn-buy" id="detailBuyBtn" target="_blank" rel="noopener" style="margin-top:8px;">💬 Comprar no WhatsApp</a>
     </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-panel">
+    <button class="cart-close" id="cartCloseBtn" aria-label="Fechar">×</button>
+    <h2>🛍️ Sua Sacola</h2>
+    <div id="cartItemsList"></div>
+    <div id="cartSummaryBox"></div>
+  </div>
+</div>
+
+<div class="checkout-overlay" id="checkoutOverlay">
+  <div class="checkout-panel">
+    <button class="cart-close" id="checkoutCloseBtn" aria-label="Fechar">×</button>
+    <button type="button" class="checkout-back" id="checkoutBackBtn">← Voltar pra sacola</button>
+    <h2>Finalizar pedido</h2>
+    <div class="checkout-step-label">Preencha seus dados — o pedido completo é enviado direto pro nosso WhatsApp.</div>
+
+    <div class="form-group">
+      <label>Nome completo</label>
+      <input type="text" id="chkNome" placeholder="Seu nome completo">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>CEP</label>
+        <div class="frete-row">
+          <input type="text" id="chkCep" placeholder="00000-000" maxlength="9">
+          <button type="button" id="chkFreteBtn">Calcular frete</button>
+        </div>
+      </div>
+      <div class="form-group" style="flex:2;">
+        <label>Endereço (rua e número)</label>
+        <input type="text" id="chkEndereco" placeholder="Rua, número">
+      </div>
+    </div>
+    <div id="chkFreteResultado"></div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Bairro</label>
+        <input type="text" id="chkBairro" placeholder="Bairro">
+      </div>
+      <div class="form-group">
+        <label>Cidade/UF</label>
+        <input type="text" id="chkCidade" placeholder="Cidade - UF">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Forma de pagamento</label>
+      <div class="payment-options">
+        <div class="payment-opt active" data-pay="pix">💠 Pix</div>
+        <div class="payment-opt" data-pay="cartao">💳 Cartão</div>
+      </div>
+    </div>
+
+    <div class="checkout-summary" id="checkoutSummaryBox"></div>
+
+    <button type="button" class="btn-finalizar" id="finalizarPedidoBtn">💬 Finalizar Pedido no WhatsApp</button>
   </div>
 </div>
 
@@ -770,7 +883,11 @@ function render(){
             <div class="kit-row"><span class="lbl">Infantil (P-G):</span><span class="price">${money(74.99)}</span></div>
           </div>` : `
           <div class="product-price-row"><span class="lbl">Valor unitário:</span><span class="price">${money(p.preco)}</span></div>`}
-          <a class="btn-buy" target="_blank" rel="noopener" href="${wppLink(p.nome, p.desc, p.tamanhos[0], p.kitFamilia, p.img)}" onclick="rastrearCliqueWhatsApp('${p.nome.replace(/'/g,"")}')">💬 Comprar no WhatsApp</a>
+          <div class="card-actions-row">
+            <button type="button" class="btn-addcart" data-addcart-id="${p.id}">🛍️ Sacola</button>
+            <button type="button" class="btn-share" data-share-id="${p.id}" aria-label="Compartilhar">🔗</button>
+          </div>
+          <a class="btn-buy" target="_blank" rel="noopener" href="${wppLink(p.nome, p.desc, p.tamanhos[0], p.kitFamilia, p.img)}" onclick="rastrearCliqueWhatsApp('${p.nome.replace(/'/g,"")}')" style="margin-top:8px;">💬 Comprar no WhatsApp</a>
         </div>`;
       grid.appendChild(card);
     });
@@ -963,21 +1080,17 @@ document.getElementById("freteCep").addEventListener("input", (e)=>{
   e.target.value = v;
 });
 
-document.getElementById("freteBtn").addEventListener("click", async ()=>{
-  const cepInput = document.getElementById("freteCep");
-  const resultDiv = document.getElementById("freteResultado");
-  const btn = document.getElementById("freteBtn");
-  const cep = cepInput.value.replace(/\D/g,"");
-
+async function calcularFrete(cepValue, resultDiv, btn){
+  const cep = cepValue.replace(/\D/g,"");
   if(cep.length !== 8){
     resultDiv.innerHTML = `<div class="frete-erro">Digite um CEP válido (8 números).</div>`;
-    return;
+    return null;
   }
-
+  const originalText = btn.textContent;
   btn.disabled = true;
   btn.textContent = "Calculando...";
   resultDiv.innerHTML = "";
-
+  let opcoes = null;
   try{
     const resp = await fetch("/api/frete", {
       method: "POST",
@@ -985,22 +1098,29 @@ document.getElementById("freteBtn").addEventListener("click", async ()=>{
       body: JSON.stringify({ cepDestino: cep })
     });
     const data = await resp.json();
-
     if(!resp.ok || data.erro){
       resultDiv.innerHTML = `<div class="frete-erro">Não foi possível calcular agora. Confirme o valor direto no WhatsApp.</div>`;
     } else if(!data.opcoes || data.opcoes.length === 0){
       resultDiv.innerHTML = `<div class="frete-erro">Nenhuma opção de envio encontrada pra esse CEP.</div>`;
     } else {
+      opcoes = data.opcoes;
       resultDiv.innerHTML = `<div class="frete-resultado">` +
-        data.opcoes.map(o => `<div class="frete-opcao"><span>${o.transportadora} — ${o.servico} (${o.prazoDias} dias úteis)</span><span><b>${money(o.preco)}</b></span></div>`).join("") +
+        opcoes.map(o => `<div class="frete-opcao"><span>${o.transportadora} — ${o.servico} (${o.prazoDias} dias úteis)</span><span><b>${money(o.preco)}</b></span></div>`).join("") +
         `</div>`;
     }
   } catch(err){
     resultDiv.innerHTML = `<div class="frete-erro">Erro de conexão. Confirme o valor direto no WhatsApp.</div>`;
   }
-
   btn.disabled = false;
-  btn.textContent = "Calcular";
+  btn.textContent = originalText;
+  return opcoes;
+}
+
+document.getElementById("freteBtn").addEventListener("click", ()=>{
+  const cepInput = document.getElementById("freteCep");
+  const resultDiv = document.getElementById("freteResultado");
+  const btn = document.getElementById("freteBtn");
+  calcularFrete(cepInput.value, resultDiv, btn);
 });
 detailOverlay.addEventListener("click", (e)=>{
   if(e.target === detailOverlay) closeDetail();
@@ -1031,6 +1151,259 @@ document.querySelectorAll("#navMenu a").forEach(link=>{
 document.querySelectorAll(".wpp-link").forEach(el=>{
   el.setAttribute("href", genericWppLink());
 });
+
+// ================= CARRINHO / SACOLA =================
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem("trajeFielCart") || "[]"); } catch(e){ cart = []; }
+
+function saveCart(){
+  try { localStorage.setItem("trajeFielCart", JSON.stringify(cart)); } catch(e){}
+  updateCartBadge();
+}
+
+function updateCartBadge(){
+  const totalQtd = cart.reduce((s,i)=>s+i.qtd, 0);
+  document.getElementById("cartBadge").textContent = totalQtd;
+}
+
+function addToCart(product, tamanho, qtd){
+  qtd = qtd || 1;
+  const existente = cart.find(i => i.id === product.id && i.tamanho === tamanho);
+  if(existente){
+    existente.qtd += qtd;
+  } else {
+    cart.push({
+      id: product.id, nome: product.nome, desc: product.desc, img: product.img,
+      categoria: product.categoria, tamanho: tamanho, preco: product.preco,
+      kitFamilia: product.kitFamilia || false, qtd: qtd
+    });
+  }
+  saveCart();
+}
+
+function removeFromCart(idx){
+  cart.splice(idx,1);
+  saveCart();
+  renderCart();
+}
+
+function updateCartItemQty(idx, delta){
+  cart[idx].qtd = Math.max(1, cart[idx].qtd + delta);
+  saveCart();
+  renderCart();
+}
+
+function cartSubtotal(){
+  return cart.reduce((s,i)=> s + (i.preco * i.qtd), 0);
+}
+
+function renderCart(){
+  const listEl = document.getElementById("cartItemsList");
+  const summaryEl = document.getElementById("cartSummaryBox");
+  if(cart.length === 0){
+    listEl.innerHTML = `<div class="cart-empty">Sua sacola está vazia.<br>Escolha uma estampa no catálogo 🙏</div>`;
+    summaryEl.innerHTML = "";
+    return;
+  }
+  listEl.innerHTML = cart.map((item, idx) => `
+    <div class="cart-item">
+      <img src="${item.img}" alt="${item.nome}">
+      <div class="cart-item-info">
+        <div class="nome">${item.nome}</div>
+        <div class="meta">Tamanho: ${item.tamanho}</div>
+        <div class="cart-item-actions">
+          <div class="qty-stepper">
+            <button type="button" data-qty-minus="${idx}">−</button>
+            <span>${item.qtd}</span>
+            <button type="button" data-qty-plus="${idx}">+</button>
+          </div>
+          <button type="button" class="cart-item-remove" data-remove="${idx}">remover</button>
+        </div>
+      </div>
+      <div class="cart-item-price">${money(item.preco * item.qtd)}</div>
+    </div>
+  `).join("");
+
+  const subtotal = cartSubtotal();
+  summaryEl.innerHTML = `
+    <div class="cart-summary">
+      <div class="cart-summary-row"><span>Subtotal</span><span>${money(subtotal)}</span></div>
+      <div class="cart-summary-row" style="font-size:.78rem;color:var(--ink-soft);">Frete calculado na próxima etapa</div>
+      <div class="cart-summary-row total"><span>Total</span><span>${money(subtotal)}</span></div>
+      <button type="button" class="btn-checkout" id="goToCheckoutBtn">Finalizar Compra →</button>
+    </div>
+  `;
+
+  listEl.querySelectorAll("[data-qty-minus]").forEach(b=>{
+    b.addEventListener("click", ()=> updateCartItemQty(parseInt(b.dataset.qtyMinus), -1));
+  });
+  listEl.querySelectorAll("[data-qty-plus]").forEach(b=>{
+    b.addEventListener("click", ()=> updateCartItemQty(parseInt(b.dataset.qtyPlus), 1));
+  });
+  listEl.querySelectorAll("[data-remove]").forEach(b=>{
+    b.addEventListener("click", ()=> removeFromCart(parseInt(b.dataset.remove)));
+  });
+  const goBtn = document.getElementById("goToCheckoutBtn");
+  if(goBtn) goBtn.addEventListener("click", openCheckout);
+}
+
+const cartOverlay = document.getElementById("cartOverlay");
+function openCart(){
+  renderCart();
+  cartOverlay.classList.add("open");
+}
+function closeCart(){
+  cartOverlay.classList.remove("open");
+}
+document.getElementById("cartOpenBtn").addEventListener("click", openCart);
+document.getElementById("cartCloseBtn").addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", (e)=>{ if(e.target===cartOverlay) closeCart(); });
+
+// Botoes "Adicionar a sacola" nos cards do catalogo
+document.getElementById("productGrid").addEventListener("click", (e)=>{
+  const addBtn = e.target.closest("[data-addcart-id]");
+  if(addBtn){
+    const p = PRODUCTS.find(x => x.id === addBtn.dataset.addcartId);
+    if(p){
+      const card = addBtn.closest(".product-card");
+      const sizeWrap = card.querySelector(".product-sizes");
+      const activeSize = sizeWrap.querySelector(".size-opt.active");
+      const tamanho = activeSize ? activeSize.dataset.size : p.tamanhos[0];
+      addToCart(p, tamanho, 1);
+      addBtn.textContent = "✓ Adicionado";
+      setTimeout(()=>{ addBtn.textContent = "🛍️ Sacola"; }, 1400);
+    }
+    return;
+  }
+  const shareBtn = e.target.closest("[data-share-id]");
+  if(shareBtn){
+    const p = PRODUCTS.find(x => x.id === shareBtn.dataset.shareId);
+    if(p) shareProduct(p);
+  }
+});
+
+function shareProduct(p){
+  const url = `${SITE_URL}/#catalogo`;
+  const text = `Olha essa camiseta: ${p.nome} — ${p.desc}`;
+  if(navigator.share){
+    navigator.share({ title: p.nome, text: text, url: url }).catch(()=>{});
+  } else {
+    const fullText = `${text}\n${url}`;
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(fullText).then(()=>{
+        alert("Link copiado! Cole onde quiser compartilhar.");
+      }).catch(()=>{
+        prompt("Copie o link abaixo:", fullText);
+      });
+    } else {
+      prompt("Copie o link abaixo:", fullText);
+    }
+  }
+}
+
+// Adicionar a sacola dentro do modal de detalhes
+document.getElementById("detailAddCartBtn").addEventListener("click", ()=>{
+  if(!detailCurrentProduct) return;
+  addToCart(detailCurrentProduct, detailSelectedSize, detailQty);
+  const btn = document.getElementById("detailAddCartBtn");
+  btn.textContent = "✓ Adicionado à sacola";
+  setTimeout(()=>{ btn.textContent = "🛍️ Adicionar à sacola"; }, 1400);
+});
+document.getElementById("detailShareBtn").addEventListener("click", ()=>{
+  if(detailCurrentProduct) shareProduct(detailCurrentProduct);
+});
+
+// ================= CHECKOUT =================
+const checkoutOverlay = document.getElementById("checkoutOverlay");
+let pagamentoEscolhido = "pix";
+let freteEscolhido = null;
+
+function renderCheckoutSummary(){
+  const box = document.getElementById("checkoutSummaryBox");
+  const subtotal = cartSubtotal();
+  const freteTxt = freteEscolhido ? money(freteEscolhido.preco) : "a calcular";
+  const total = subtotal + (freteEscolhido ? freteEscolhido.preco : 0);
+  box.innerHTML = `
+    ${cart.map(i => `<div class="checkout-summary-item"><span>${i.qtd}x ${i.nome} (${i.tamanho})</span><span>${money(i.preco*i.qtd)}</span></div>`).join("")}
+    <div class="checkout-summary-item"><span>Frete</span><span>${freteTxt}</span></div>
+    <div class="checkout-summary-item" style="font-weight:700;border-top:1px solid var(--line);padding-top:8px;margin-top:6px;"><span>Total</span><span>${money(total)}</span></div>
+  `;
+}
+
+function openCheckout(){
+  if(cart.length === 0) return;
+  closeCart();
+  freteEscolhido = null;
+  document.getElementById("chkFreteResultado").innerHTML = "";
+  renderCheckoutSummary();
+  checkoutOverlay.classList.add("open");
+}
+function closeCheckout(){
+  checkoutOverlay.classList.remove("open");
+}
+document.getElementById("checkoutCloseBtn").addEventListener("click", closeCheckout);
+document.getElementById("checkoutBackBtn").addEventListener("click", ()=>{
+  closeCheckout();
+  openCart();
+});
+checkoutOverlay.addEventListener("click", (e)=>{ if(e.target===checkoutOverlay) closeCheckout(); });
+
+document.querySelectorAll(".payment-opt").forEach(opt=>{
+  opt.addEventListener("click", ()=>{
+    document.querySelectorAll(".payment-opt").forEach(o=>o.classList.remove("active"));
+    opt.classList.add("active");
+    pagamentoEscolhido = opt.dataset.pay;
+  });
+});
+
+document.getElementById("chkFreteBtn").addEventListener("click", async ()=>{
+  const cepInput = document.getElementById("chkCep");
+  const resultDiv = document.getElementById("chkFreteResultado");
+  const btn = document.getElementById("chkFreteBtn");
+  const opcoes = await calcularFrete(cepInput.value, resultDiv, btn);
+  if(opcoes && opcoes.length > 0){
+    freteEscolhido = opcoes[0];
+    renderCheckoutSummary();
+  }
+});
+
+document.getElementById("finalizarPedidoBtn").addEventListener("click", ()=>{
+  const nome = document.getElementById("chkNome").value.trim();
+  const cep = document.getElementById("chkCep").value.trim();
+  const endereco = document.getElementById("chkEndereco").value.trim();
+  const bairro = document.getElementById("chkBairro").value.trim();
+  const cidade = document.getElementById("chkCidade").value.trim();
+
+  if(!nome || !cep || !endereco || !bairro || !cidade){
+    alert("Preencha todos os dados antes de finalizar, por favor.");
+    return;
+  }
+
+  const subtotal = cartSubtotal();
+  const freteTxt = freteEscolhido ? money(freteEscolhido.preco) : "a combinar";
+  const total = subtotal + (freteEscolhido ? freteEscolhido.preco : 0);
+  const pagTxt = pagamentoEscolhido === "pix" ? "Pix" : "Cartão";
+
+  let msg = `Olá! Quero finalizar meu pedido 🙏\n\n*Itens:*\n`;
+  cart.forEach(i => {
+    msg += `• ${i.qtd}x ${i.nome} — ${i.desc} (Tamanho: ${i.tamanho}) — ${money(i.preco*i.qtd)}\n`;
+  });
+  msg += `\n*Subtotal:* ${money(subtotal)}`;
+  msg += `\n*Frete:* ${freteTxt}`;
+  msg += `\n*Total:* ${money(total)}`;
+  msg += `\n\n*Forma de pagamento:* ${pagTxt}`;
+  msg += `\n\n*Dados de entrega:*\n${nome}\n${endereco}, ${bairro}\n${cidade} — CEP: ${cep}`;
+  msg += origemTag();
+
+  const link = `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  window.open(link, "_blank");
+
+  cart = [];
+  saveCart();
+  closeCheckout();
+});
+
+updateCartBadge();
 
 renderHeroCategories();
 renderDevotionRow();
