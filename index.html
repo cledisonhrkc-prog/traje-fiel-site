@@ -728,9 +728,9 @@
         <div class="payment-opt active" data-pay="pix">💠 Pix</div>
         <div class="payment-opt" data-pay="cartao">💳 Cartão</div>
       </div>
-      <div id="cartaoPagamentoBox" style="display:none;margin-top:12px;padding:14px;background:var(--cream);border-radius:10px;">
-        <p style="font-size:.84rem;color:var(--ink-soft);margin:0 0 10px;">Pra pagar com cartão, use nosso link seguro — seus dados de cartão não passam pelo WhatsApp.</p>
-        <a href="#" target="_blank" rel="noopener" id="cartaoPagamentoLink" style="display:block;text-align:center;background:var(--wine);color:#fff;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:.9rem;">💳 Pagar com Cartão (link seguro)</a>
+      <div id="cartaoPagamentoBox" style="margin-top:12px;padding:14px;background:var(--cream);border-radius:10px;">
+        <p style="font-size:.84rem;color:var(--ink-soft);margin:0 0 10px;">Pix e cartão são feitos pelo nosso link seguro de pagamento — seus dados não passam pelo WhatsApp.</p>
+        <a href="#" target="_blank" rel="noopener" id="cartaoPagamentoLink" style="display:block;text-align:center;background:var(--wine);color:#fff;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:.9rem;">💳 Ir para o Pagamento</a>
       </div>
     </div>
 
@@ -1346,7 +1346,6 @@ function openCheckout(){
   // reseta forma de pagamento pro padrao (Pix) a cada abertura
   pagamentoEscolhido = "pix";
   document.querySelectorAll(".payment-opt").forEach(o=>o.classList.toggle("active", o.dataset.pay==="pix"));
-  document.getElementById("cartaoPagamentoBox").style.display = "none";
   renderCheckoutSummary();
   checkoutOverlay.classList.add("open");
 }
@@ -1367,7 +1366,6 @@ document.querySelectorAll(".payment-opt").forEach(opt=>{
     document.querySelectorAll(".payment-opt").forEach(o=>o.classList.remove("active"));
     opt.classList.add("active");
     pagamentoEscolhido = opt.dataset.pay;
-    document.getElementById("cartaoPagamentoBox").style.display = (pagamentoEscolhido === "cartao") ? "block" : "none";
   });
 });
 
@@ -1406,17 +1404,12 @@ document.getElementById("finalizarPedidoBtn").addEventListener("click", ()=>{
   msg += `\n*Subtotal:* ${money(subtotal)}`;
   msg += `\n*Frete:* ${freteTxt}`;
   msg += `\n*Total:* ${money(total)}`;
-  msg += `\n\n*Forma de pagamento:* ${pagTxt}`;
-  if(pagamentoEscolhido === "cartao"){
-    msg += `\n(Pagamento com cartão via link seguro)`;
-  }
+  msg += `\n\n*Forma de pagamento:* ${pagTxt} (via link seguro de pagamento)`;
   msg += `\n\n*Dados de entrega:*\n${nome}\n${endereco}, ${bairro}\n${cidade} — CEP: ${cep}`;
   msg += origemTag();
 
   const link = `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-  if(pagamentoEscolhido === "cartao"){
-    window.open(CARTAO_PAYMENT_LINK, "_blank");
-  }
+  window.open(CARTAO_PAYMENT_LINK, "_blank");
   window.open(link, "_blank");
 
   cart = [];
