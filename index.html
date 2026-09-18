@@ -728,6 +728,10 @@
         <div class="payment-opt active" data-pay="pix">💠 Pix</div>
         <div class="payment-opt" data-pay="cartao">💳 Cartão</div>
       </div>
+      <div id="cartaoPagamentoBox" style="display:none;margin-top:12px;padding:14px;background:var(--cream);border-radius:10px;">
+        <p style="font-size:.84rem;color:var(--ink-soft);margin:0 0 10px;">Pra pagar com cartão, use nosso link seguro — seus dados de cartão não passam pelo WhatsApp.</p>
+        <a href="#" target="_blank" rel="noopener" id="cartaoPagamentoLink" style="display:block;text-align:center;background:var(--wine);color:#fff;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:.9rem;">💳 Pagar com Cartão (link seguro)</a>
+      </div>
     </div>
 
     <div class="checkout-summary" id="checkoutSummaryBox"></div>
@@ -738,6 +742,10 @@
 
 <script>
 const WPP_NUMBER = "5519984605924";
+
+// Link de pagamento por cartão (Mercado Pago, PagSeguro, PicPay, etc.)
+// IMPORTANTE: troque pelo link real assim que a Carina configurar a conta dela.
+const CARTAO_PAYMENT_LINK = "https://linknabio.gg/carinaoliveira28";
 
 // --- Rastreamento de origem (UTM) para gestão de tráfego pago ---
 // Captura utm_source/utm_medium/utm_campaign da URL do anúncio e guarda na visita,
@@ -1335,6 +1343,10 @@ function openCheckout(){
   closeCart();
   freteEscolhido = null;
   document.getElementById("chkFreteResultado").innerHTML = "";
+  // reseta forma de pagamento pro padrao (Pix) a cada abertura
+  pagamentoEscolhido = "pix";
+  document.querySelectorAll(".payment-opt").forEach(o=>o.classList.toggle("active", o.dataset.pay==="pix"));
+  document.getElementById("cartaoPagamentoBox").style.display = "none";
   renderCheckoutSummary();
   checkoutOverlay.classList.add("open");
 }
@@ -1348,11 +1360,14 @@ document.getElementById("checkoutBackBtn").addEventListener("click", ()=>{
 });
 checkoutOverlay.addEventListener("click", (e)=>{ if(e.target===checkoutOverlay) closeCheckout(); });
 
+document.getElementById("cartaoPagamentoLink").setAttribute("href", CARTAO_PAYMENT_LINK);
+
 document.querySelectorAll(".payment-opt").forEach(opt=>{
   opt.addEventListener("click", ()=>{
     document.querySelectorAll(".payment-opt").forEach(o=>o.classList.remove("active"));
     opt.classList.add("active");
     pagamentoEscolhido = opt.dataset.pay;
+    document.getElementById("cartaoPagamentoBox").style.display = (pagamentoEscolhido === "cartao") ? "block" : "none";
   });
 });
 
@@ -1392,10 +1407,16 @@ document.getElementById("finalizarPedidoBtn").addEventListener("click", ()=>{
   msg += `\n*Frete:* ${freteTxt}`;
   msg += `\n*Total:* ${money(total)}`;
   msg += `\n\n*Forma de pagamento:* ${pagTxt}`;
+  if(pagamentoEscolhido === "cartao"){
+    msg += `\n(Pagamento com cartão via link seguro)`;
+  }
   msg += `\n\n*Dados de entrega:*\n${nome}\n${endereco}, ${bairro}\n${cidade} — CEP: ${cep}`;
   msg += origemTag();
 
   const link = `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  if(pagamentoEscolhido === "cartao"){
+    window.open(CARTAO_PAYMENT_LINK, "_blank");
+  }
   window.open(link, "_blank");
 
   cart = [];
