@@ -725,8 +725,7 @@
     <div class="form-group">
       <label>Forma de pagamento</label>
       <div class="payment-options">
-        <div class="payment-opt active" data-pay="pix">💠 Pix</div>
-        <div class="payment-opt" data-pay="cartao">💳 Cartão</div>
+        <div class="payment-opt active" data-pay="cartao">💳 Pagamento (Pix ou Cartão)</div>
       </div>
       <div id="cartaoPagamentoBox" style="margin-top:12px;padding:14px;background:var(--cream);border-radius:10px;">
         <p style="font-size:.84rem;color:var(--ink-soft);margin:0 0 10px;">Pix e cartão são feitos pelo nosso link seguro de pagamento — seus dados não passam pelo WhatsApp.</p>
@@ -1323,7 +1322,7 @@ document.getElementById("detailShareBtn").addEventListener("click", ()=>{
 
 // ================= CHECKOUT =================
 const checkoutOverlay = document.getElementById("checkoutOverlay");
-let pagamentoEscolhido = "pix";
+let pagamentoEscolhido = "cartao";
 let freteEscolhido = null;
 
 function renderCheckoutSummary(){
@@ -1344,8 +1343,8 @@ function openCheckout(){
   freteEscolhido = null;
   document.getElementById("chkFreteResultado").innerHTML = "";
   // reseta forma de pagamento pro padrao (Pix) a cada abertura
-  pagamentoEscolhido = "pix";
-  document.querySelectorAll(".payment-opt").forEach(o=>o.classList.toggle("active", o.dataset.pay==="pix"));
+  pagamentoEscolhido = "cartao";
+  document.querySelectorAll(".payment-opt").forEach(o=>o.classList.toggle("active", o.dataset.pay==="cartao"));
   renderCheckoutSummary();
   checkoutOverlay.classList.add("open");
 }
@@ -1395,7 +1394,7 @@ document.getElementById("finalizarPedidoBtn").addEventListener("click", ()=>{
   const subtotal = cartSubtotal();
   const freteTxt = freteEscolhido ? money(freteEscolhido.preco) : "a combinar";
   const total = subtotal + (freteEscolhido ? freteEscolhido.preco : 0);
-  const pagTxt = pagamentoEscolhido === "pix" ? "Pix" : "Cartão";
+  const pagTxt = "Pix ou Cartão (via link de pagamento)";
 
   let msg = `Olá! Quero finalizar meu pedido 🙏\n\n*Itens:*\n`;
   cart.forEach(i => {
@@ -1404,7 +1403,7 @@ document.getElementById("finalizarPedidoBtn").addEventListener("click", ()=>{
   msg += `\n*Subtotal:* ${money(subtotal)}`;
   msg += `\n*Frete:* ${freteTxt}`;
   msg += `\n*Total:* ${money(total)}`;
-  msg += `\n\n*Forma de pagamento:* ${pagTxt} (via link seguro de pagamento)`;
+  msg += `\n\n*Forma de pagamento:* ${pagTxt}`;
   msg += `\n\n*Dados de entrega:*\n${nome}\n${endereco}, ${bairro}\n${cidade} — CEP: ${cep}`;
   msg += origemTag();
 
