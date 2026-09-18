@@ -60,13 +60,13 @@
   .topbar{background:var(--wine);color:#fff;text-align:center;font-size:.82rem;padding:9px 16px;}
   .topbar b{color:var(--gold-soft);}
   header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1220px;margin:0 auto;gap:20px;}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;max-width:1220px;margin:0 auto;gap:20px;}
   .brand{display:flex;align-items:center;gap:12px;}
-  .brand-mark{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--wine);font-size:1.2rem;flex-shrink:0;overflow:hidden;}
+  .brand-mark{width:66px;height:66px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--wine);font-size:1.2rem;flex-shrink:0;overflow:hidden;}
   .brand-mark img{width:100%;height:100%;object-fit:cover;}
-  .logo{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:600;letter-spacing:.02em;line-height:1.1;}
+  .logo{font-family:'Cinzel',serif;font-size:1.55rem;font-weight:600;letter-spacing:.02em;line-height:1.1;}
   .logo em{font-style:normal;color:var(--gold);}
-  .tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:.78rem;color:var(--ink-soft);margin-top:1px;}
+  .tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:.92rem;color:var(--ink-soft);margin-top:2px;}
   nav{display:flex;gap:26px;align-items:center;flex-wrap:wrap;}
   nav a.navlink{font-size:.92rem;color:var(--ink);font-weight:500;white-space:nowrap;}
   nav a.navlink .cnt{color:var(--gold);font-weight:600;}
@@ -170,6 +170,28 @@
   .detail-info .tags span{background:var(--cream);border:1px solid var(--line);border-radius:100px;padding:5px 12px;font-size:.76rem;color:var(--ink-soft);}
   .detail-sizes{margin-bottom:20px;}
   .detail-sizes .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
+  .link-medidas{background:none;border:none;color:var(--wine);font-size:.82rem;font-weight:600;margin-top:10px;padding:0;text-decoration:underline;}
+  .mini-medidas{margin-top:12px;background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto;}
+  .mini-medidas table{width:100%;border-collapse:collapse;font-size:.78rem;white-space:nowrap;}
+  .mini-medidas th{background:var(--wine);color:#fff;padding:6px 8px;font-size:.72rem;}
+  .mini-medidas td{padding:6px 8px;text-align:center;border-bottom:1px solid var(--line);}
+  .mini-medidas td:first-child{font-weight:700;color:var(--wine);}
+  .detail-qty{margin-bottom:16px;}
+  .detail-qty .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
+  .detail-frete{margin-bottom:20px;}
+  .detail-frete .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
+  .frete-row{display:flex;gap:8px;}
+  .frete-row input{flex:1;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:.9rem;font-family:inherit;}
+  .frete-row button{background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-size:.85rem;font-weight:600;white-space:nowrap;}
+  .frete-row button:disabled{opacity:.6;}
+  .frete-resultado{margin-top:10px;font-size:.84rem;}
+  .frete-opcao{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);}
+  .frete-opcao:last-child{border-bottom:none;}
+  .frete-erro{color:#b3261e;font-size:.82rem;margin-top:8px;}
+  .qty-stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .qty-stepper button{width:36px;height:36px;background:var(--cream);border:none;font-size:1.1rem;color:var(--ink);}
+  .qty-stepper button:hover{background:var(--line);}
+  .qty-stepper span{width:42px;text-align:center;font-weight:700;color:var(--ink);}
   .detail-price{font-size:1.5rem;font-weight:700;color:var(--wine);margin-bottom:22px;}
   .medidas-tables{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
   .medida-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;}
@@ -471,7 +493,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Quais são as formas de pagamento?</span><span class="icon">﹀</span></button>
-        <div class="faq-a"><p>Pix e cartão — combinamos direto na conversa do WhatsApp.</p></div>
+        <div class="faq-a"><p>Pix e cartão. Veja as opções e o link direto de pagamento em: <a href="https://linknabio.gg/carinaoliveira28" target="_blank" rel="noopener" style="color:var(--wine);font-weight:600;">linknabio.gg/carinaoliveira28</a></p></div>
       </div>
       <div class="faq-cta">
         <div><h4>Ainda tem alguma dúvida?</h4><p>Nossa equipe está disponível no WhatsApp para te atender com carinho e dedicação.</p></div>
@@ -515,6 +537,7 @@
           <li><a href="#duvidas">Dúvidas Frequentes (FAQ)</a></li>
           <li><a href="#medidas">Guia de Medidas e Tamanhos</a></li>
           <li><a href="#" class="wpp-link">Atendimento e Atacado no WhatsApp</a></li>
+          <li><a href="https://linknabio.gg/carinaoliveira28" target="_blank" rel="noopener">Formas de Pagamento (Pix/Cartão)</a></li>
         </ul>
       </div>
     </div>
@@ -539,6 +562,24 @@
       <div class="detail-sizes">
         <span class="lbl">Escolha o tamanho:</span>
         <div class="product-sizes" id="detailSizes"></div>
+        <button type="button" id="detailToggleMedidas" class="link-medidas">📏 Ver tabela de medidas</button>
+        <div id="detailMedidasBox" class="mini-medidas" style="display:none;"></div>
+      </div>
+      <div class="detail-qty">
+        <span class="lbl">Quantidade:</span>
+        <div class="qty-stepper">
+          <button type="button" id="detailQtyMinus">−</button>
+          <span id="detailQtyValue">1</span>
+          <button type="button" id="detailQtyPlus">+</button>
+        </div>
+      </div>
+      <div class="detail-frete">
+        <span class="lbl">Calcular frete:</span>
+        <div class="frete-row">
+          <input type="text" id="freteCep" placeholder="00000-000" maxlength="9">
+          <button type="button" id="freteBtn">Calcular</button>
+        </div>
+        <div id="freteResultado"></div>
       </div>
       <div class="detail-price" id="detailPrice"></div>
       <a class="btn-buy" id="detailBuyBtn" target="_blank" rel="noopener">💬 Comprar no WhatsApp</a>
@@ -547,7 +588,7 @@
 </div>
 
 <script>
-const WPP_NUMBER = "5519997166955";
+const WPP_NUMBER = "5519984605924";
 
 // --- Rastreamento de origem (UTM) para gestão de tráfego pago ---
 // Captura utm_source/utm_medium/utm_campaign da URL do anúncio e guarda na visita,
@@ -591,11 +632,12 @@ function money(v){ return "R$ " + v.toFixed(2).replace(".", ","); }
 
 const SITE_URL = "https://trajefiel.com";
 
-function wppLink(nome, desc, tamanho, kitFamilia, img){
+function wppLink(nome, desc, tamanho, kitFamilia, img, qtd){
   const tamTxt = tamanho ? ` (Tamanho: ${tamanho})` : "";
+  const qtdTxt = (qtd && qtd > 1) ? ` — Quantidade: ${qtd} unidades` : "";
   const kitTxt = kitFamilia ? " — Quero saber sobre o kit família (tamanhos adulto e infantil)" : "";
   const fotoTxt = img ? `\n\nFoto do produto: ${SITE_URL}/${img}` : "";
-  const msg = `Olá! Quero comprar a camiseta *${nome} — ${desc}*${tamTxt}${kitTxt}${fotoTxt}${origemTag()}`;
+  const msg = `Olá! Quero comprar a camiseta *${nome} — ${desc}*${tamTxt}${qtdTxt}${kitTxt}${fotoTxt}${origemTag()}`;
   return `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 function genericWppLink(){
@@ -774,10 +816,45 @@ document.getElementById("productGrid").addEventListener("click", (e)=>{
 const detailOverlay = document.getElementById("detailOverlay");
 let detailSelectedSize = null;
 let detailCurrentProduct = null;
+let detailQty = 1;
+
+const MEDIDAS_DATA = {
+  feminino: {titulo:"Feminino (Baby Look)", cols:["Tam","Largura","Comp.","Busto","Manga"],
+    linhas:[["P","41 cm","55 cm","40 cm","15 cm"],["M","46 cm","60 cm","43 cm","17 cm"],["G","51 cm","64 cm","48 cm","18 cm"],["GG","55 cm","69 cm","51 cm","19 cm"]]},
+  masculino: {titulo:"Masculino (Tradicional)", cols:["Tam","Largura","Comp.","Ombro","Manga"],
+    linhas:[["M","52 cm","71 cm","43 cm","21 cm"],["G","55 cm","76 cm","46 cm","22 cm"],["GG","60 cm","78 cm","49 cm","24 cm"],["XG","64 cm","81 cm","51 cm","27 cm"]]},
+};
+
+function renderMiniMedidas(categoria){
+  const box = document.getElementById("detailMedidasBox");
+  const data = MEDIDAS_DATA[categoria];
+  if(!data){
+    box.innerHTML = `<p style="font-size:.8rem;color:var(--ink-soft);margin:0;">Tamanhos infantis (P/M/G) com caimento confortável. Dúvida? Chama no WhatsApp que ajudamos a escolher.</p>`;
+    return;
+  }
+  box.innerHTML = `<table>
+    <tr>${data.cols.map(c=>`<th>${c}</th>`).join("")}</tr>
+    ${data.linhas.map(l=>`<tr>${l.map(v=>`<td>${v}</td>`).join("")}</tr>`).join("")}
+  </table>`;
+}
+
+function updateDetailBuyBtn(){
+  const p = detailCurrentProduct;
+  const buyBtn = document.getElementById("detailBuyBtn");
+  buyBtn.setAttribute("href", wppLink(p.nome, p.desc, detailSelectedSize, p.kitFamilia, p.img, detailQty));
+}
 
 function openDetail(product){
   detailCurrentProduct = product;
   detailSelectedSize = product.tamanhos[0];
+  detailQty = 1;
+  document.getElementById("detailQtyValue").textContent = "1";
+  document.getElementById("detailMedidasBox").style.display = "none";
+  document.getElementById("detailToggleMedidas").textContent = "📏 Ver tabela de medidas";
+  document.getElementById("freteCep").value = "";
+  document.getElementById("freteResultado").innerHTML = "";
+  renderMiniMedidas(product.categoria);
+
   document.getElementById("detailImg").src = product.img;
   document.getElementById("detailImg").alt = product.nome;
   document.getElementById("detailCat").textContent = product.categoria.charAt(0).toUpperCase()+product.categoria.slice(1) + " · " + (product.fornecedor || "F01");
@@ -795,9 +872,8 @@ function openDetail(product){
     priceEl.textContent = money(product.preco);
   }
 
-  const buyBtn = document.getElementById("detailBuyBtn");
-  buyBtn.setAttribute("href", wppLink(product.nome, product.desc, detailSelectedSize, product.kitFamilia, product.img));
-  buyBtn.setAttribute("onclick", `rastrearCliqueWhatsApp('${product.nome.replace(/'/g,"")}')`);
+  updateDetailBuyBtn();
+  document.getElementById("detailBuyBtn").setAttribute("onclick", `rastrearCliqueWhatsApp('${product.nome.replace(/'/g,"")}')`);
 
   detailOverlay.classList.add("open");
 }
@@ -805,6 +881,21 @@ function openDetail(product){
 function closeDetail(){
   detailOverlay.classList.remove("open");
 }
+
+document.getElementById("detailToggleMedidas").addEventListener("click", ()=>{
+  const box = document.getElementById("detailMedidasBox");
+  const btn = document.getElementById("detailToggleMedidas");
+  const showing = box.style.display !== "none";
+  box.style.display = showing ? "none" : "block";
+  btn.textContent = showing ? "📏 Ver tabela de medidas" : "📏 Ocultar tabela de medidas";
+});
+
+document.getElementById("detailQtyMinus").addEventListener("click", ()=>{
+  if(detailQty > 1){ detailQty--; document.getElementById("detailQtyValue").textContent = detailQty; updateDetailBuyBtn(); }
+});
+document.getElementById("detailQtyPlus").addEventListener("click", ()=>{
+  detailQty++; document.getElementById("detailQtyValue").textContent = detailQty; updateDetailBuyBtn();
+});
 
 document.getElementById("productGrid").addEventListener("click", (e)=>{
   const hoverBtn = e.target.closest(".product-hover");
@@ -824,11 +915,57 @@ document.getElementById("detailSizes").addEventListener("click", (e)=>{
   document.querySelectorAll("#detailSizes .size-opt").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
   detailSelectedSize = btn.dataset.size;
-  const buyBtn = document.getElementById("detailBuyBtn");
-  buyBtn.setAttribute("href", wppLink(detailCurrentProduct.nome, detailCurrentProduct.desc, detailSelectedSize, detailCurrentProduct.kitFamilia, detailCurrentProduct.img));
+  updateDetailBuyBtn();
 });
 
 document.getElementById("detailClose").addEventListener("click", closeDetail);
+
+// --- Calculadora de frete (Melhor Envio, via função serverless) ---
+document.getElementById("freteCep").addEventListener("input", (e)=>{
+  let v = e.target.value.replace(/\D/g,"").slice(0,8);
+  if(v.length > 5) v = v.slice(0,5) + "-" + v.slice(5);
+  e.target.value = v;
+});
+
+document.getElementById("freteBtn").addEventListener("click", async ()=>{
+  const cepInput = document.getElementById("freteCep");
+  const resultDiv = document.getElementById("freteResultado");
+  const btn = document.getElementById("freteBtn");
+  const cep = cepInput.value.replace(/\D/g,"");
+
+  if(cep.length !== 8){
+    resultDiv.innerHTML = `<div class="frete-erro">Digite um CEP válido (8 números).</div>`;
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Calculando...";
+  resultDiv.innerHTML = "";
+
+  try{
+    const resp = await fetch("/api/frete", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ cepDestino: cep })
+    });
+    const data = await resp.json();
+
+    if(!resp.ok || data.erro){
+      resultDiv.innerHTML = `<div class="frete-erro">Não foi possível calcular agora. Confirme o valor direto no WhatsApp.</div>`;
+    } else if(!data.opcoes || data.opcoes.length === 0){
+      resultDiv.innerHTML = `<div class="frete-erro">Nenhuma opção de envio encontrada pra esse CEP.</div>`;
+    } else {
+      resultDiv.innerHTML = `<div class="frete-resultado">` +
+        data.opcoes.map(o => `<div class="frete-opcao"><span>${o.transportadora} — ${o.servico} (${o.prazoDias} dias úteis)</span><span><b>${money(o.preco)}</b></span></div>`).join("") +
+        `</div>`;
+    }
+  } catch(err){
+    resultDiv.innerHTML = `<div class="frete-erro">Erro de conexão. Confirme o valor direto no WhatsApp.</div>`;
+  }
+
+  btn.disabled = false;
+  btn.textContent = "Calcular";
+});
 detailOverlay.addEventListener("click", (e)=>{
   if(e.target === detailOverlay) closeDetail();
 });
