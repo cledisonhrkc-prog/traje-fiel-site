@@ -60,17 +60,13 @@
   .topbar{background:var(--wine);color:#fff;text-align:center;font-size:.82rem;padding:9px 16px;}
   .topbar b{color:var(--gold-soft);}
   header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:38px 32px;max-width:1400px;margin:0 auto;gap:24px;flex-wrap:wrap;transition:padding .25s ease;}
-  header.scrolled .header-inner{padding:12px 32px;}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1220px;margin:0 auto;gap:20px;}
   .brand{display:flex;align-items:center;gap:12px;}
-  .brand-mark{width:150px;height:150px;border-radius:50%;border:4px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--wine);font-size:1.2rem;flex-shrink:0;overflow:hidden;transition:width .25s ease,height .25s ease;}
-  header.scrolled .brand-mark{width:52px;height:52px;border-width:2px;}
+  .brand-mark{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--wine);font-size:1.2rem;flex-shrink:0;overflow:hidden;}
   .brand-mark img{width:100%;height:100%;object-fit:cover;}
-  .logo{font-family:'Cinzel',serif;font-size:3.1rem;font-weight:600;letter-spacing:.02em;line-height:1.1;transition:font-size .25s ease;}
-  header.scrolled .logo{font-size:1.4rem;}
+  .logo{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:600;letter-spacing:.02em;line-height:1.1;}
   .logo em{font-style:normal;color:var(--gold);}
-  .tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:1.25rem;color:var(--ink-soft);margin-top:4px;transition:font-size .25s ease,opacity .25s ease;}
-  header.scrolled .tagline{font-size:0;opacity:0;margin:0;height:0;}
+  .tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:.78rem;color:var(--ink-soft);margin-top:1px;}
   nav{display:flex;gap:26px;align-items:center;flex-wrap:wrap;}
   nav a.navlink{font-size:.92rem;color:var(--ink);font-weight:500;white-space:nowrap;}
   nav a.navlink .cnt{color:var(--gold);font-weight:600;}
@@ -79,39 +75,7 @@
   .menu-toggle{display:none;font-size:1.5rem;}
 
   /* ---------- Hero ---------- */
-  .hero{padding:64px 0 56px;text-align:center;position:relative;overflow:hidden;
-    background-color:#EDE1C8;
-    background-image:
-      radial-gradient(ellipse at 12% 15%, rgba(255,255,255,.75) 0%, transparent 50%),
-      linear-gradient(120deg, #F7F1E3 0%, #E8D9B8 55%, #DFC89A 100%);
-  }
-  .hero::before{
-    content:"";
-    position:absolute;
-    top:-8%;
-    right:-4%;
-    width:700px;
-    height:700px;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='%236E1423' fill-opacity='0.14'%3E%3Crect x='86' y='10' width='28' height='180' rx='3'/%3E%3Crect x='20' y='62' width='160' height='28' rx='3'/%3E%3C/g%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-size:contain;
-    pointer-events:none;
-    transform:rotate(-8deg);
-  }
-  .hero::after{
-    content:"";
-    position:absolute;
-    bottom:-15%;
-    left:-8%;
-    width:420px;
-    height:420px;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='%23C9A227' fill-opacity='0.16'%3E%3Crect x='86' y='10' width='28' height='180' rx='3'/%3E%3Crect x='20' y='62' width='160' height='28' rx='3'/%3E%3C/g%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-size:contain;
-    pointer-events:none;
-    transform:rotate(12deg);
-  }
-  .hero .wrap{position:relative;z-index:1;}
+  .hero{padding:64px 0 56px;text-align:center;}
   .badge-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold);border-radius:100px;padding:9px 20px;font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--wine);background:#fff;margin-bottom:28px;}
   .badge-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
   .hero h1{font-size:clamp(2.3rem,5vw,3.7rem);font-weight:700;line-height:1.12;margin:0 0 22px;color:var(--ink);}
@@ -204,90 +168,13 @@
   .detail-info .desc{color:var(--ink-soft);font-size:.95rem;margin:0 0 18px;}
   .detail-info .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
   .detail-info .tags span{background:var(--cream);border:1px solid var(--line);border-radius:100px;padding:5px 12px;font-size:.76rem;color:var(--ink-soft);}
-  .detail-info .material-info{font-size:.82rem;color:var(--ink-soft);margin:0 0 18px;padding:10px 12px;background:var(--cream);border:1px solid var(--line);border-radius:8px;}
   .detail-sizes{margin-bottom:20px;}
   .detail-sizes .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
-  .link-medidas{background:none;border:none;color:var(--wine);font-size:.82rem;font-weight:600;margin-top:10px;padding:0;text-decoration:underline;}
-  .mini-medidas{margin-top:12px;background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto;}
-  .mini-medidas table{width:100%;border-collapse:collapse;font-size:.78rem;white-space:nowrap;}
-  .mini-medidas th{background:var(--wine);color:#fff;padding:6px 8px;font-size:.72rem;}
-  .mini-medidas td{padding:6px 8px;text-align:center;border-bottom:1px solid var(--line);}
-  .mini-medidas td:first-child{font-weight:700;color:var(--wine);}
-  .detail-qty{margin-bottom:16px;}
-  .detail-qty .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
-  .detail-frete{margin-bottom:20px;}
-  .detail-frete .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
-  .frete-row{display:flex;gap:8px;}
-  .frete-row input{flex:1;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:.9rem;font-family:inherit;}
-  .frete-row button{background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-size:.85rem;font-weight:600;white-space:nowrap;}
-  .frete-row button:disabled{opacity:.6;}
-  .frete-resultado{margin-top:10px;font-size:.84rem;}
-  .frete-opcao{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);}
-  .frete-opcao:last-child{border-bottom:none;}
-  .frete-erro{color:#b3261e;font-size:.82rem;margin-top:8px;}
-
-  /* ---------- Carrinho / Sacola ---------- */
-  .cart-btn{position:relative;background:var(--cream);border:1.5px solid var(--gold);color:var(--ink);font-weight:600;font-size:.86rem;padding:9px 16px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;}
-  .cart-badge{background:var(--wine);color:#fff;font-size:.7rem;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;}
-  .btn-addcart{background:var(--ink);color:#fff;border:none;border-radius:10px;padding:12px 0;font-size:.85rem;font-weight:600;text-align:center;display:block;width:100%;margin-top:8px;}
-  .btn-share{background:none;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.9rem;color:var(--ink-soft);width:100%;margin-top:8px;text-align:center;}
-  .card-actions-row{display:flex;gap:8px;}
-  .card-actions-row .btn-addcart{margin-top:0;flex:1;}
-  .card-actions-row .btn-share{margin-top:0;width:44px;flex-shrink:0;padding:10px 0;}
-
-  .cart-overlay,.checkout-overlay{position:fixed;inset:0;background:rgba(20,15,12,.72);z-index:110;display:none;align-items:flex-start;justify-content:flex-end;}
-  .cart-overlay.open,.checkout-overlay.open{display:flex;}
-  .cart-panel{background:#fff;width:100%;max-width:460px;height:100%;overflow-y:auto;padding:26px;position:relative;}
-  .cart-panel h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:20px;}
-  .cart-close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;background:var(--cream);border:1px solid var(--line);font-size:1.2rem;}
-  .cart-item{display:flex;gap:12px;border-bottom:1px solid var(--line);padding:14px 0;}
-  .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px;flex-shrink:0;}
-  .cart-item-info{flex:1;min-width:0;}
-  .cart-item-info .nome{font-weight:600;font-size:.9rem;margin-bottom:2px;}
-  .cart-item-info .meta{font-size:.78rem;color:var(--ink-soft);}
-  .cart-item-actions{display:flex;align-items:center;gap:8px;margin-top:6px;}
-  .cart-item-actions .qty-stepper button{width:26px;height:26px;font-size:.9rem;}
-  .cart-item-actions .qty-stepper span{width:26px;font-size:.85rem;}
-  .cart-item-remove{color:#b3261e;font-size:.78rem;background:none;border:none;text-decoration:underline;margin-left:auto;}
-  .cart-item-price{font-weight:700;color:var(--wine);font-size:.9rem;white-space:nowrap;}
-  .cart-empty{text-align:center;padding:60px 20px;color:var(--ink-soft);}
-  .cart-summary{margin-top:20px;padding-top:16px;border-top:2px solid var(--ink);}
-  .cart-summary-row{display:flex;justify-content:space-between;font-size:.92rem;margin-bottom:8px;}
-  .cart-summary-row.total{font-size:1.15rem;font-weight:700;color:var(--wine);}
-  .btn-checkout{background:var(--wine);color:#fff;border:none;border-radius:10px;padding:14px;font-size:.95rem;font-weight:700;width:100%;margin-top:16px;}
-
-  .checkout-panel{background:#fff;width:100%;max-width:560px;height:100%;overflow-y:auto;padding:26px;position:relative;}
-  .checkout-panel h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:6px;}
-  .checkout-step-label{font-size:.8rem;color:var(--ink-soft);margin-bottom:22px;}
-  .form-group{margin-bottom:16px;}
-  .form-group label{display:block;font-size:.82rem;color:var(--ink-soft);margin-bottom:6px;}
-  .form-group input,.form-group select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:8px;font-size:.9rem;font-family:inherit;}
-  .form-row{display:flex;gap:12px;}
-  .form-row .form-group{flex:1;}
-  .payment-options{display:flex;gap:10px;margin-bottom:20px;}
-  .payment-opt{flex:1;border:1.5px solid var(--line);border-radius:10px;padding:14px;text-align:center;cursor:pointer;font-size:.88rem;font-weight:600;}
-  .payment-opt.active{border-color:var(--wine);background:rgba(110,20,35,.06);color:var(--wine);}
-  .checkout-summary{background:var(--cream);border-radius:10px;padding:16px;margin:20px 0;font-size:.86rem;}
-  .checkout-summary-item{display:flex;justify-content:space-between;padding:4px 0;}
-  .btn-finalizar{background:#25D366;color:#fff;border:none;border-radius:10px;padding:15px;font-size:.98rem;font-weight:700;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;}
-  .checkout-back{background:none;border:none;color:var(--ink-soft);font-size:.85rem;margin-bottom:16px;text-decoration:underline;}
-  @media (max-width:600px){
-    .cart-panel,.checkout-panel{max-width:100%;}
-  }
-  .qty-stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
-  .qty-stepper button{width:36px;height:36px;background:var(--cream);border:none;font-size:1.1rem;color:var(--ink);}
-  .qty-stepper button:hover{background:var(--line);}
-  .qty-stepper span{width:42px;text-align:center;font-weight:700;color:var(--ink);}
   .detail-price{font-size:1.5rem;font-weight:700;color:var(--wine);margin-bottom:22px;}
-  .medidas-tables{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-  .medida-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;}
-  .medida-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;margin:0 0 4px;}
-  .medida-card .sub{font-size:.85rem;color:var(--ink-soft);margin-bottom:16px;}
-  .medida-table{width:100%;border-collapse:collapse;font-size:.86rem;}
-  .medida-table th{background:var(--wine);color:#fff;padding:9px 6px;text-align:center;font-weight:600;font-size:.78rem;}
-  .medida-table td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line);}
-  .medida-table td:first-child{font-weight:700;color:var(--wine);}
-  .medida-note{font-size:.82rem;color:var(--ink-soft);margin-top:16px;line-height:1.5;}
+  @media (max-width:700px){
+    .detail-box{grid-template-columns:1fr;}
+    .detail-img img{min-height:240px;}
+  }
   .product-body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1;}
   .product-name{font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:600;line-height:1.32;margin:0 0 4px;}
   .product-desc{font-size:.82rem;color:var(--ink-soft);margin:0 0 12px;}
@@ -357,11 +244,6 @@
 
   .wpp-float{position:fixed;bottom:22px;right:22px;z-index:60;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 6px 20px rgba(0,0,0,.25);}
 
-  /* ---------- Correção: header fixo cobrindo âncoras ao rolar ---------- */
-  #topo, #diferenciais, #catalogo, #sobre, #medidas, #duvidas{
-    scroll-margin-top: var(--header-h, 270px);
-  }
-
   @media (max-width:980px){
     nav{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--paper);flex-direction:column;justify-content:flex-start;padding:90px 28px 28px;gap:20px;transform:translateX(100%);transition:transform .25s ease;overflow-y:auto;}
     nav.open{transform:translateX(0);}
@@ -373,13 +255,6 @@
     section{padding:52px 0;}
     .search-bar{flex-direction:column;align-items:stretch;}
     .size-filter{flex-wrap:wrap;}
-    .detail-box{grid-template-columns:1fr;}
-    .detail-img img{min-height:240px;}
-    .medidas-tables{grid-template-columns:1fr;}
-    .brand-mark{width:64px;height:64px;}
-    .logo{font-size:1.5rem;}
-    .tagline{font-size:.8rem;}
-    .header-inner{padding:16px 16px;gap:12px;}
   }
 </style>
 </head>
@@ -405,7 +280,6 @@
       <a class="navlink" href="#sobre">Sobre</a>
       <a class="navlink" href="#duvidas">Dúvidas</a>
       <a class="btn-outline" href="#medidas">Tabela de Medidas</a>
-      <button type="button" class="cart-btn" id="cartOpenBtn">🛍️ Sacola <span class="cart-badge" id="cartBadge">0</span></button>
       <a href="#" class="btn-wpp wpp-link">💬 Fale no WhatsApp</a>
     </nav>
   </div>
@@ -522,57 +396,6 @@
 </section>
 
 <a id="medidas"></a>
-<section>
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="kicker" style="justify-content:center;">📏 GUIA DE MEDIDAS</div>
-      <h2>Tabela de Medidas</h2>
-      <p>Confira as medidas em centímetros antes de escolher o tamanho. Meça uma peça que já veste bem e compare.</p>
-    </div>
-    <div class="medidas-tables">
-      <div class="medida-card">
-        <h3>Feminino</h3>
-        <div class="sub">Modelagem Baby Look (caimento justo)</div>
-        <table class="medida-table">
-          <tr><th>Tam</th><th>Largura</th><th>Comprimento</th><th>Busto</th><th>Manga</th></tr>
-          <tr><td>P</td><td>41 cm</td><td>55 cm</td><td>40 cm</td><td>15 cm</td></tr>
-          <tr><td>M</td><td>46 cm</td><td>60 cm</td><td>43 cm</td><td>17 cm</td></tr>
-          <tr><td>G</td><td>51 cm</td><td>64 cm</td><td>48 cm</td><td>18 cm</td></tr>
-          <tr><td>GG</td><td>55 cm</td><td>69 cm</td><td>51 cm</td><td>19 cm</td></tr>
-        </table>
-        <p class="medida-note">Largura = de axila a axila · Comprimento = do ombro até a barra.</p>
-      </div>
-      <div class="medida-card">
-        <h3>Masculino</h3>
-        <div class="sub">Modelagem Tradicional (caimento reto)</div>
-        <table class="medida-table">
-          <tr><th>Tam</th><th>Largura</th><th>Comprimento</th><th>Ombro</th><th>Manga</th></tr>
-          <tr><td>M</td><td>52 cm</td><td>71 cm</td><td>43 cm</td><td>21 cm</td></tr>
-          <tr><td>G</td><td>55 cm</td><td>76 cm</td><td>46 cm</td><td>22 cm</td></tr>
-          <tr><td>GG</td><td>60 cm</td><td>78 cm</td><td>49 cm</td><td>24 cm</td></tr>
-          <tr><td>XG</td><td>64 cm</td><td>81 cm</td><td>51 cm</td><td>27 cm</td></tr>
-        </table>
-        <p class="medida-note">Largura = de axila a axila · Ombro = de uma costura a outra.</p>
-      </div>
-    </div>
-    <div class="medida-card" style="margin-top:24px;">
-      <h3>Infantil</h3>
-      <div class="sub">Tamanhos juvenis e infantis (2 a 14)</div>
-      <table class="medida-table">
-        <tr><th>Tam</th><th>Largura</th><th>Comprimento</th><th>Ombro</th><th>Manga</th></tr>
-        <tr><td>2</td><td>30 cm</td><td>39 cm</td><td>23 cm</td><td>10 cm</td></tr>
-        <tr><td>4</td><td>33 cm</td><td>42 cm</td><td>24 cm</td><td>10 cm</td></tr>
-        <tr><td>6</td><td>35 cm</td><td>44 cm</td><td>25 cm</td><td>11 cm</td></tr>
-        <tr><td>8</td><td>38 cm</td><td>49 cm</td><td>31 cm</td><td>12 cm</td></tr>
-        <tr><td>10</td><td>40 cm</td><td>51 cm</td><td>33 cm</td><td>13 cm</td></tr>
-        <tr><td>12</td><td>44 cm</td><td>55 cm</td><td>35 cm</td><td>14 cm</td></tr>
-        <tr><td>14</td><td>45 cm</td><td>57 cm</td><td>36 cm</td><td>15 cm</td></tr>
-      </table>
-      <p class="medida-note">Largura = de axila a axila · Ombro = de uma costura a outra. Em caso de dúvida entre dois tamanhos, fale com a gente pelo WhatsApp que ajudamos a escolher certo.</p>
-    </div>
-  </div>
-</section>
-
 <section id="duvidas">
   <div class="wrap">
     <div class="section-head center">
@@ -583,7 +406,7 @@
     <div style="max-width:760px;margin:0 auto;">
       <div class="faq-item open">
         <button class="faq-q"><span>Qual o tecido usado nas camisetas?</span><span class="icon">︿</span></button>
-        <div class="faq-a"><p>Trabalhamos com o tecido Suede Premium (coleção F01), considerado o mais macio e confortável do mercado, com toque aveludado, caimento impecável, e que não desbota nem dá bolinha. Também temos peças em Malha Viscolycra — 96% poliéster + 4% elastano (coleção F02), leve, com ótimo caimento e toque macio. Cada produto no catálogo mostra de qual coleção/tecido ele é.</p></div>
+        <div class="faq-a"><p>Trabalhamos exclusivamente com o tecido Suede Premium, considerado o mais macio e confortável do mercado. Ele possui toque aveludado, caimento impecável, não desbota e não dá bolinha, mantendo a qualidade original lavagem após lavagem.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Quais os tamanhos disponíveis?</span><span class="icon">﹀</span></button>
@@ -603,7 +426,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Quais são as formas de pagamento?</span><span class="icon">﹀</span></button>
-        <div class="faq-a"><p>Pix e cartão. Veja as opções e o link direto de pagamento em: <a href="https://linknabio.gg/carinaoliveira28" target="_blank" rel="noopener" style="color:var(--wine);font-weight:600;">linknabio.gg/carinaoliveira28</a></p></div>
+        <div class="faq-a"><p>Pix e cartão — combinamos direto na conversa do WhatsApp.</p></div>
       </div>
       <div class="faq-cta">
         <div><h4>Ainda tem alguma dúvida?</h4><p>Nossa equipe está disponível no WhatsApp para te atender com carinho e dedicação.</p></div>
@@ -647,7 +470,6 @@
           <li><a href="#duvidas">Dúvidas Frequentes (FAQ)</a></li>
           <li><a href="#medidas">Guia de Medidas e Tamanhos</a></li>
           <li><a href="#" class="wpp-link">Atendimento e Atacado no WhatsApp</a></li>
-          <li><a href="https://linknabio.gg/carinaoliveira28" target="_blank" rel="noopener">Formas de Pagamento (Pix/Cartão)</a></li>
         </ul>
       </div>
     </div>
@@ -669,135 +491,18 @@
       <h2 id="detailName"></h2>
       <p class="desc" id="detailDesc"></p>
       <div class="tags" id="detailTags"></div>
-      <div class="material-info" id="detailMaterial"></div>
       <div class="detail-sizes">
         <span class="lbl">Escolha o tamanho:</span>
         <div class="product-sizes" id="detailSizes"></div>
-        <button type="button" id="detailToggleMedidas" class="link-medidas">📏 Ver tabela de medidas</button>
-        <div id="detailMedidasBox" class="mini-medidas" style="display:none;"></div>
-      </div>
-      <div class="detail-qty">
-        <span class="lbl">Quantidade:</span>
-        <div class="qty-stepper">
-          <button type="button" id="detailQtyMinus">−</button>
-          <span id="detailQtyValue">1</span>
-          <button type="button" id="detailQtyPlus">+</button>
-        </div>
-      </div>
-      <div class="detail-frete">
-        <span class="lbl">Calcular frete:</span>
-        <div class="frete-row">
-          <input type="text" id="freteCep" placeholder="00000-000" maxlength="9">
-          <button type="button" id="freteBtn">Calcular</button>
-        </div>
-        <div id="freteResultado"></div>
       </div>
       <div class="detail-price" id="detailPrice"></div>
-      <div class="card-actions-row">
-        <button type="button" class="btn-addcart" id="detailAddCartBtn">🛍️ Adicionar à sacola</button>
-        <button type="button" class="btn-share" id="detailShareBtn" aria-label="Compartilhar">🔗</button>
-      </div>
-      <a class="btn-buy" id="detailBuyBtn" target="_blank" rel="noopener" style="margin-top:8px;">💬 Comprar no WhatsApp</a>
+      <a class="btn-buy" id="detailBuyBtn" target="_blank" rel="noopener">💬 Comprar no WhatsApp</a>
     </div>
-  </div>
-</div>
-
-<div class="cart-overlay" id="cartOverlay">
-  <div class="cart-panel">
-    <button class="cart-close" id="cartCloseBtn" aria-label="Fechar">×</button>
-    <h2>🛍️ Sua Sacola</h2>
-    <div id="cartItemsList"></div>
-    <div id="cartSummaryBox"></div>
-  </div>
-</div>
-
-<div class="checkout-overlay" id="checkoutOverlay">
-  <div class="checkout-panel">
-    <button class="cart-close" id="checkoutCloseBtn" aria-label="Fechar">×</button>
-    <button type="button" class="checkout-back" id="checkoutBackBtn">← Voltar pra sacola</button>
-    <h2>Finalizar pedido</h2>
-    <div class="checkout-step-label">Preencha seus dados — o pedido completo é enviado direto pro nosso WhatsApp.</div>
-
-    <div class="form-group">
-      <label>Nome completo</label>
-      <input type="text" id="chkNome" placeholder="Seu nome completo">
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>CEP</label>
-        <div class="frete-row">
-          <input type="text" id="chkCep" placeholder="00000-000" maxlength="9">
-          <button type="button" id="chkFreteBtn">Calcular frete</button>
-        </div>
-      </div>
-      <div class="form-group" style="flex:2;">
-        <label>Endereço (rua e número)</label>
-        <input type="text" id="chkEndereco" placeholder="Rua, número">
-      </div>
-    </div>
-    <div id="chkFreteResultado"></div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Bairro</label>
-        <input type="text" id="chkBairro" placeholder="Bairro">
-      </div>
-      <div class="form-group">
-        <label>Cidade/UF</label>
-        <input type="text" id="chkCidade" placeholder="Cidade - UF">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Forma de pagamento</label>
-      <div class="payment-options">
-        <div class="payment-opt active" data-pay="cartao">💳 Pagamento (Pix ou Cartão)</div>
-      </div>
-      <div id="cartaoPagamentoBox" style="margin-top:12px;padding:14px;background:var(--cream);border-radius:10px;">
-        <p style="font-size:.84rem;color:var(--ink-soft);margin:0 0 10px;">Pix e cartão são feitos pelo nosso link seguro de pagamento — seus dados não passam pelo WhatsApp.</p>
-        <a href="#" target="_blank" rel="noopener" id="cartaoPagamentoLink" style="display:block;text-align:center;background:var(--wine);color:#fff;padding:12px;border-radius:8px;font-weight:600;text-decoration:none;font-size:.9rem;">💳 Ir para o Pagamento</a>
-      </div>
-    </div>
-
-    <div class="checkout-summary" id="checkoutSummaryBox"></div>
-
-    <button type="button" class="btn-finalizar" id="finalizarPedidoBtn">💬 Finalizar Pedido no WhatsApp</button>
   </div>
 </div>
 
 <script>
-const WPP_NUMBER = "5519984605924";
-
-// Link de pagamento por cartão (Mercado Pago, PagSeguro, PicPay, etc.)
-// IMPORTANTE: troque pelo link real assim que a Carina configurar a conta dela.
-const CARTAO_PAYMENT_LINK = "https://linknabio.gg/carinaoliveira28";
-
-// Mede a altura real do cabeçalho (topbar + header) e ajusta o espaçamento de rolagem automaticamente.
-// Evita o cabeçalho cobrir o topo do conteúdo, e continua funcionando mesmo se o logo/cabeçalho mudar de tamanho.
-function ajustarAlturaCabecalho(){
-  const header = document.querySelector('header');
-  const topbar = document.querySelector('.topbar');
-  const altura = (header ? header.offsetHeight : 0) + (topbar ? topbar.offsetHeight : 0);
-  document.documentElement.style.setProperty('--header-h', (altura + 16) + 'px');
-}
-window.addEventListener('load', ajustarAlturaCabecalho);
-window.addEventListener('resize', ajustarAlturaCabecalho);
-ajustarAlturaCabecalho();
-
-// Encolhe o cabeçalho (logo menor, menos espaçamento) assim que a página é rolada,
-// pra ele não ficar ocupando um espaço grande fixo na tela o tempo todo.
-const headerEl = document.querySelector('header');
-let cabecalhoEncolhido = false;
-function verificarScrollCabecalho(){
-  const deveEncolher = window.scrollY > 60;
-  if(deveEncolher !== cabecalhoEncolhido){
-    cabecalhoEncolhido = deveEncolher;
-    headerEl.classList.toggle('scrolled', deveEncolher);
-    // a altura mudou (encolheu/expandiu), recalcula o espaçamento de ancoras
-    requestAnimationFrame(ajustarAlturaCabecalho);
-  }
-}
-window.addEventListener('scroll', verificarScrollCabecalho, { passive: true });
-verificarScrollCabecalho();
+const WPP_NUMBER = "5519997166955";
 
 // --- Rastreamento de origem (UTM) para gestão de tráfego pago ---
 // Captura utm_source/utm_medium/utm_campaign da URL do anúncio e guarda na visita,
@@ -841,17 +546,11 @@ function money(v){ return "R$ " + v.toFixed(2).replace(".", ","); }
 
 const SITE_URL = "https://trajefiel.com";
 
-const MATERIAL_INFO = {
-  F01: "Tecido: Suede Premium — toque aveludado, não desbota e não dá bolinha.",
-  F02: "Tecido: Malha Viscolycra — 96% poliéster + 4% elastano."
-};
-
-function wppLink(nome, desc, tamanho, kitFamilia, img, qtd){
+function wppLink(nome, desc, tamanho, kitFamilia, img){
   const tamTxt = tamanho ? ` (Tamanho: ${tamanho})` : "";
-  const qtdTxt = (qtd && qtd > 1) ? ` — Quantidade: ${qtd} unidades` : "";
   const kitTxt = kitFamilia ? " — Quero saber sobre o kit família (tamanhos adulto e infantil)" : "";
   const fotoTxt = img ? `\n\nFoto do produto: ${SITE_URL}/${img}` : "";
-  const msg = `Olá! Quero comprar a camiseta *${nome} — ${desc}*${tamTxt}${qtdTxt}${kitTxt}${fotoTxt}${origemTag()}`;
+  const msg = `Olá! Quero comprar a camiseta *${nome} — ${desc}*${tamTxt}${kitTxt}${fotoTxt}${origemTag()}`;
   return `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 function genericWppLink(){
@@ -948,11 +647,7 @@ function render(){
             <div class="kit-row"><span class="lbl">Infantil (P-G):</span><span class="price">${money(74.99)}</span></div>
           </div>` : `
           <div class="product-price-row"><span class="lbl">Valor unitário:</span><span class="price">${money(p.preco)}</span></div>`}
-          <div class="card-actions-row">
-            <button type="button" class="btn-addcart" data-addcart-id="${p.id}">🛍️ Sacola</button>
-            <button type="button" class="btn-share" data-share-id="${p.id}" aria-label="Compartilhar">🔗</button>
-          </div>
-          <a class="btn-buy" target="_blank" rel="noopener" href="${wppLink(p.nome, p.desc, p.tamanhos[0], p.kitFamilia, p.img)}" onclick="rastrearCliqueWhatsApp('${p.nome.replace(/'/g,"")}')" style="margin-top:8px;">💬 Comprar no WhatsApp</a>
+          <a class="btn-buy" target="_blank" rel="noopener" href="${wppLink(p.nome, p.desc, p.tamanhos[0], p.kitFamilia, p.img)}" onclick="rastrearCliqueWhatsApp('${p.nome.replace(/'/g,"")}')">💬 Comprar no WhatsApp</a>
         </div>`;
       grid.appendChild(card);
     });
@@ -1034,54 +729,16 @@ document.getElementById("productGrid").addEventListener("click", (e)=>{
 const detailOverlay = document.getElementById("detailOverlay");
 let detailSelectedSize = null;
 let detailCurrentProduct = null;
-let detailQty = 1;
-
-const MEDIDAS_DATA = {
-  feminino: {titulo:"Feminino (Baby Look)", cols:["Tam","Largura","Comp.","Busto","Manga"],
-    linhas:[["P","41 cm","55 cm","40 cm","15 cm"],["M","46 cm","60 cm","43 cm","17 cm"],["G","51 cm","64 cm","48 cm","18 cm"],["GG","55 cm","69 cm","51 cm","19 cm"]]},
-  masculino: {titulo:"Masculino (Tradicional)", cols:["Tam","Largura","Comp.","Ombro","Manga"],
-    linhas:[["M","52 cm","71 cm","43 cm","21 cm"],["G","55 cm","76 cm","46 cm","22 cm"],["GG","60 cm","78 cm","49 cm","24 cm"],["XG","64 cm","81 cm","51 cm","27 cm"]]},
-  infantil: {titulo:"Infantil (2 a 14)", cols:["Tam","Largura","Comp.","Ombro","Manga"],
-    linhas:[["2","30 cm","39 cm","23 cm","10 cm"],["4","33 cm","42 cm","24 cm","10 cm"],["6","35 cm","44 cm","25 cm","11 cm"],["8","38 cm","49 cm","31 cm","12 cm"],["10","40 cm","51 cm","33 cm","13 cm"],["12","44 cm","55 cm","35 cm","14 cm"],["14","45 cm","57 cm","36 cm","15 cm"]]},
-};
-
-function renderMiniMedidas(categoria){
-  const box = document.getElementById("detailMedidasBox");
-  const data = MEDIDAS_DATA[categoria];
-  if(!data){
-    box.innerHTML = `<p style="font-size:.8rem;color:var(--ink-soft);margin:0;">Tamanhos infantis (P/M/G) com caimento confortável. Dúvida? Chama no WhatsApp que ajudamos a escolher.</p>`;
-    return;
-  }
-  box.innerHTML = `<table>
-    <tr>${data.cols.map(c=>`<th>${c}</th>`).join("")}</tr>
-    ${data.linhas.map(l=>`<tr>${l.map(v=>`<td>${v}</td>`).join("")}</tr>`).join("")}
-  </table>`;
-}
-
-function updateDetailBuyBtn(){
-  const p = detailCurrentProduct;
-  const buyBtn = document.getElementById("detailBuyBtn");
-  buyBtn.setAttribute("href", wppLink(p.nome, p.desc, detailSelectedSize, p.kitFamilia, p.img, detailQty));
-}
 
 function openDetail(product){
   detailCurrentProduct = product;
   detailSelectedSize = product.tamanhos[0];
-  detailQty = 1;
-  document.getElementById("detailQtyValue").textContent = "1";
-  document.getElementById("detailMedidasBox").style.display = "none";
-  document.getElementById("detailToggleMedidas").textContent = "📏 Ver tabela de medidas";
-  document.getElementById("freteCep").value = "";
-  document.getElementById("freteResultado").innerHTML = "";
-  renderMiniMedidas(product.categoria);
-
   document.getElementById("detailImg").src = product.img;
   document.getElementById("detailImg").alt = product.nome;
   document.getElementById("detailCat").textContent = product.categoria.charAt(0).toUpperCase()+product.categoria.slice(1) + " · " + (product.fornecedor || "F01");
   document.getElementById("detailName").textContent = product.nome;
   document.getElementById("detailDesc").textContent = product.desc;
-  document.getElementById("detailTags").innerHTML = `<span>${(product.fornecedor === "F02") ? "Malha Viscolycra" : "Suede Premium"}</span>${product.kitFamilia ? '<span>Kit Família</span>' : ''}`;
-  document.getElementById("detailMaterial").textContent = MATERIAL_INFO[product.fornecedor || "F01"];
+  document.getElementById("detailTags").innerHTML = `<span>Suede Premium</span>${product.kitFamilia ? '<span>Kit Família</span>' : ''}`;
 
   const sizesEl = document.getElementById("detailSizes");
   sizesEl.innerHTML = product.tamanhos.map((t,ti)=>`<button type="button" class="size-opt ${ti===0?'active':''}" data-size="${t}">${t}</button>`).join("");
@@ -1093,8 +750,9 @@ function openDetail(product){
     priceEl.textContent = money(product.preco);
   }
 
-  updateDetailBuyBtn();
-  document.getElementById("detailBuyBtn").setAttribute("onclick", `rastrearCliqueWhatsApp('${product.nome.replace(/'/g,"")}')`);
+  const buyBtn = document.getElementById("detailBuyBtn");
+  buyBtn.setAttribute("href", wppLink(product.nome, product.desc, detailSelectedSize, product.kitFamilia, product.img));
+  buyBtn.setAttribute("onclick", `rastrearCliqueWhatsApp('${product.nome.replace(/'/g,"")}')`);
 
   detailOverlay.classList.add("open");
 }
@@ -1102,21 +760,6 @@ function openDetail(product){
 function closeDetail(){
   detailOverlay.classList.remove("open");
 }
-
-document.getElementById("detailToggleMedidas").addEventListener("click", ()=>{
-  const box = document.getElementById("detailMedidasBox");
-  const btn = document.getElementById("detailToggleMedidas");
-  const showing = box.style.display !== "none";
-  box.style.display = showing ? "none" : "block";
-  btn.textContent = showing ? "📏 Ver tabela de medidas" : "📏 Ocultar tabela de medidas";
-});
-
-document.getElementById("detailQtyMinus").addEventListener("click", ()=>{
-  if(detailQty > 1){ detailQty--; document.getElementById("detailQtyValue").textContent = detailQty; updateDetailBuyBtn(); }
-});
-document.getElementById("detailQtyPlus").addEventListener("click", ()=>{
-  detailQty++; document.getElementById("detailQtyValue").textContent = detailQty; updateDetailBuyBtn();
-});
 
 document.getElementById("productGrid").addEventListener("click", (e)=>{
   const hoverBtn = e.target.closest(".product-hover");
@@ -1136,60 +779,11 @@ document.getElementById("detailSizes").addEventListener("click", (e)=>{
   document.querySelectorAll("#detailSizes .size-opt").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
   detailSelectedSize = btn.dataset.size;
-  updateDetailBuyBtn();
+  const buyBtn = document.getElementById("detailBuyBtn");
+  buyBtn.setAttribute("href", wppLink(detailCurrentProduct.nome, detailCurrentProduct.desc, detailSelectedSize, detailCurrentProduct.kitFamilia, detailCurrentProduct.img));
 });
 
 document.getElementById("detailClose").addEventListener("click", closeDetail);
-
-// --- Calculadora de frete (Melhor Envio, via função serverless) ---
-document.getElementById("freteCep").addEventListener("input", (e)=>{
-  let v = e.target.value.replace(/\D/g,"").slice(0,8);
-  if(v.length > 5) v = v.slice(0,5) + "-" + v.slice(5);
-  e.target.value = v;
-});
-
-async function calcularFrete(cepValue, resultDiv, btn){
-  const cep = cepValue.replace(/\D/g,"");
-  if(cep.length !== 8){
-    resultDiv.innerHTML = `<div class="frete-erro">Digite um CEP válido (8 números).</div>`;
-    return null;
-  }
-  const originalText = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = "Calculando...";
-  resultDiv.innerHTML = "";
-  let opcoes = null;
-  try{
-    const resp = await fetch("/api/frete", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({ cepDestino: cep })
-    });
-    const data = await resp.json();
-    if(!resp.ok || data.erro){
-      resultDiv.innerHTML = `<div class="frete-erro">Não foi possível calcular agora. Confirme o valor direto no WhatsApp.</div>`;
-    } else if(!data.opcoes || data.opcoes.length === 0){
-      resultDiv.innerHTML = `<div class="frete-erro">Nenhuma opção de envio encontrada pra esse CEP.</div>`;
-    } else {
-      opcoes = data.opcoes;
-      resultDiv.innerHTML = `<div class="frete-resultado">` +
-        opcoes.map(o => `<div class="frete-opcao"><span>${o.transportadora} — ${o.servico} (${o.prazoDias} dias úteis)</span><span><b>${money(o.preco)}</b></span></div>`).join("") +
-        `</div>`;
-    }
-  } catch(err){
-    resultDiv.innerHTML = `<div class="frete-erro">Erro de conexão. Confirme o valor direto no WhatsApp.</div>`;
-  }
-  btn.disabled = false;
-  btn.textContent = originalText;
-  return opcoes;
-}
-
-document.getElementById("freteBtn").addEventListener("click", ()=>{
-  const cepInput = document.getElementById("freteCep");
-  const resultDiv = document.getElementById("freteResultado");
-  const btn = document.getElementById("freteBtn");
-  calcularFrete(cepInput.value, resultDiv, btn);
-});
 detailOverlay.addEventListener("click", (e)=>{
   if(e.target === detailOverlay) closeDetail();
 });
@@ -1219,265 +813,6 @@ document.querySelectorAll("#navMenu a").forEach(link=>{
 document.querySelectorAll(".wpp-link").forEach(el=>{
   el.setAttribute("href", genericWppLink());
 });
-
-// ================= CARRINHO / SACOLA =================
-let cart = [];
-try { cart = JSON.parse(localStorage.getItem("trajeFielCart") || "[]"); } catch(e){ cart = []; }
-
-function saveCart(){
-  try { localStorage.setItem("trajeFielCart", JSON.stringify(cart)); } catch(e){}
-  updateCartBadge();
-}
-
-function updateCartBadge(){
-  const totalQtd = cart.reduce((s,i)=>s+i.qtd, 0);
-  document.getElementById("cartBadge").textContent = totalQtd;
-}
-
-function addToCart(product, tamanho, qtd){
-  qtd = qtd || 1;
-  const existente = cart.find(i => i.id === product.id && i.tamanho === tamanho);
-  if(existente){
-    existente.qtd += qtd;
-  } else {
-    cart.push({
-      id: product.id, nome: product.nome, desc: product.desc, img: product.img,
-      categoria: product.categoria, tamanho: tamanho, preco: product.preco,
-      kitFamilia: product.kitFamilia || false, qtd: qtd
-    });
-  }
-  saveCart();
-}
-
-function removeFromCart(idx){
-  cart.splice(idx,1);
-  saveCart();
-  renderCart();
-}
-
-function updateCartItemQty(idx, delta){
-  cart[idx].qtd = Math.max(1, cart[idx].qtd + delta);
-  saveCart();
-  renderCart();
-}
-
-function cartSubtotal(){
-  return cart.reduce((s,i)=> s + (i.preco * i.qtd), 0);
-}
-
-function renderCart(){
-  const listEl = document.getElementById("cartItemsList");
-  const summaryEl = document.getElementById("cartSummaryBox");
-  if(cart.length === 0){
-    listEl.innerHTML = `<div class="cart-empty">Sua sacola está vazia.<br>Escolha uma estampa no catálogo 🙏</div>`;
-    summaryEl.innerHTML = "";
-    return;
-  }
-  listEl.innerHTML = cart.map((item, idx) => `
-    <div class="cart-item">
-      <img src="${item.img}" alt="${item.nome}">
-      <div class="cart-item-info">
-        <div class="nome">${item.nome}</div>
-        <div class="meta">Tamanho: ${item.tamanho}</div>
-        <div class="cart-item-actions">
-          <div class="qty-stepper">
-            <button type="button" data-qty-minus="${idx}">−</button>
-            <span>${item.qtd}</span>
-            <button type="button" data-qty-plus="${idx}">+</button>
-          </div>
-          <button type="button" class="cart-item-remove" data-remove="${idx}">remover</button>
-        </div>
-      </div>
-      <div class="cart-item-price">${money(item.preco * item.qtd)}</div>
-    </div>
-  `).join("");
-
-  const subtotal = cartSubtotal();
-  summaryEl.innerHTML = `
-    <div class="cart-summary">
-      <div class="cart-summary-row"><span>Subtotal</span><span>${money(subtotal)}</span></div>
-      <div class="cart-summary-row" style="font-size:.78rem;color:var(--ink-soft);">Frete calculado na próxima etapa</div>
-      <div class="cart-summary-row total"><span>Total</span><span>${money(subtotal)}</span></div>
-      <button type="button" class="btn-checkout" id="goToCheckoutBtn">Finalizar Compra →</button>
-    </div>
-  `;
-
-  listEl.querySelectorAll("[data-qty-minus]").forEach(b=>{
-    b.addEventListener("click", ()=> updateCartItemQty(parseInt(b.dataset.qtyMinus), -1));
-  });
-  listEl.querySelectorAll("[data-qty-plus]").forEach(b=>{
-    b.addEventListener("click", ()=> updateCartItemQty(parseInt(b.dataset.qtyPlus), 1));
-  });
-  listEl.querySelectorAll("[data-remove]").forEach(b=>{
-    b.addEventListener("click", ()=> removeFromCart(parseInt(b.dataset.remove)));
-  });
-  const goBtn = document.getElementById("goToCheckoutBtn");
-  if(goBtn) goBtn.addEventListener("click", openCheckout);
-}
-
-const cartOverlay = document.getElementById("cartOverlay");
-function openCart(){
-  renderCart();
-  cartOverlay.classList.add("open");
-}
-function closeCart(){
-  cartOverlay.classList.remove("open");
-}
-document.getElementById("cartOpenBtn").addEventListener("click", openCart);
-document.getElementById("cartCloseBtn").addEventListener("click", closeCart);
-cartOverlay.addEventListener("click", (e)=>{ if(e.target===cartOverlay) closeCart(); });
-
-// Botoes "Adicionar a sacola" nos cards do catalogo
-document.getElementById("productGrid").addEventListener("click", (e)=>{
-  const addBtn = e.target.closest("[data-addcart-id]");
-  if(addBtn){
-    const p = PRODUCTS.find(x => x.id === addBtn.dataset.addcartId);
-    if(p){
-      const card = addBtn.closest(".product-card");
-      const sizeWrap = card.querySelector(".product-sizes");
-      const activeSize = sizeWrap.querySelector(".size-opt.active");
-      const tamanho = activeSize ? activeSize.dataset.size : p.tamanhos[0];
-      addToCart(p, tamanho, 1);
-      addBtn.textContent = "✓ Adicionado";
-      setTimeout(()=>{ addBtn.textContent = "🛍️ Sacola"; }, 1400);
-    }
-    return;
-  }
-  const shareBtn = e.target.closest("[data-share-id]");
-  if(shareBtn){
-    const p = PRODUCTS.find(x => x.id === shareBtn.dataset.shareId);
-    if(p) shareProduct(p);
-  }
-});
-
-function shareProduct(p){
-  const url = `${SITE_URL}/#catalogo`;
-  const text = `Olha essa camiseta: ${p.nome} — ${p.desc}`;
-  if(navigator.share){
-    navigator.share({ title: p.nome, text: text, url: url }).catch(()=>{});
-  } else {
-    const fullText = `${text}\n${url}`;
-    if(navigator.clipboard){
-      navigator.clipboard.writeText(fullText).then(()=>{
-        alert("Link copiado! Cole onde quiser compartilhar.");
-      }).catch(()=>{
-        prompt("Copie o link abaixo:", fullText);
-      });
-    } else {
-      prompt("Copie o link abaixo:", fullText);
-    }
-  }
-}
-
-// Adicionar a sacola dentro do modal de detalhes
-document.getElementById("detailAddCartBtn").addEventListener("click", ()=>{
-  if(!detailCurrentProduct) return;
-  addToCart(detailCurrentProduct, detailSelectedSize, detailQty);
-  const btn = document.getElementById("detailAddCartBtn");
-  btn.textContent = "✓ Adicionado à sacola";
-  setTimeout(()=>{ btn.textContent = "🛍️ Adicionar à sacola"; }, 1400);
-});
-document.getElementById("detailShareBtn").addEventListener("click", ()=>{
-  if(detailCurrentProduct) shareProduct(detailCurrentProduct);
-});
-
-// ================= CHECKOUT =================
-const checkoutOverlay = document.getElementById("checkoutOverlay");
-let pagamentoEscolhido = "cartao";
-let freteEscolhido = null;
-
-function renderCheckoutSummary(){
-  const box = document.getElementById("checkoutSummaryBox");
-  const subtotal = cartSubtotal();
-  const freteTxt = freteEscolhido ? money(freteEscolhido.preco) : "a calcular";
-  const total = subtotal + (freteEscolhido ? freteEscolhido.preco : 0);
-  box.innerHTML = `
-    ${cart.map(i => `<div class="checkout-summary-item"><span>${i.qtd}x ${i.nome} (${i.tamanho})</span><span>${money(i.preco*i.qtd)}</span></div>`).join("")}
-    <div class="checkout-summary-item"><span>Frete</span><span>${freteTxt}</span></div>
-    <div class="checkout-summary-item" style="font-weight:700;border-top:1px solid var(--line);padding-top:8px;margin-top:6px;"><span>Total</span><span>${money(total)}</span></div>
-  `;
-}
-
-function openCheckout(){
-  if(cart.length === 0) return;
-  closeCart();
-  freteEscolhido = null;
-  document.getElementById("chkFreteResultado").innerHTML = "";
-  // reseta forma de pagamento pro padrao (Pix) a cada abertura
-  pagamentoEscolhido = "cartao";
-  document.querySelectorAll(".payment-opt").forEach(o=>o.classList.toggle("active", o.dataset.pay==="cartao"));
-  renderCheckoutSummary();
-  checkoutOverlay.classList.add("open");
-}
-function closeCheckout(){
-  checkoutOverlay.classList.remove("open");
-}
-document.getElementById("checkoutCloseBtn").addEventListener("click", closeCheckout);
-document.getElementById("checkoutBackBtn").addEventListener("click", ()=>{
-  closeCheckout();
-  openCart();
-});
-checkoutOverlay.addEventListener("click", (e)=>{ if(e.target===checkoutOverlay) closeCheckout(); });
-
-document.getElementById("cartaoPagamentoLink").setAttribute("href", CARTAO_PAYMENT_LINK);
-
-document.querySelectorAll(".payment-opt").forEach(opt=>{
-  opt.addEventListener("click", ()=>{
-    document.querySelectorAll(".payment-opt").forEach(o=>o.classList.remove("active"));
-    opt.classList.add("active");
-    pagamentoEscolhido = opt.dataset.pay;
-  });
-});
-
-document.getElementById("chkFreteBtn").addEventListener("click", async ()=>{
-  const cepInput = document.getElementById("chkCep");
-  const resultDiv = document.getElementById("chkFreteResultado");
-  const btn = document.getElementById("chkFreteBtn");
-  const opcoes = await calcularFrete(cepInput.value, resultDiv, btn);
-  if(opcoes && opcoes.length > 0){
-    freteEscolhido = opcoes[0];
-    renderCheckoutSummary();
-  }
-});
-
-document.getElementById("finalizarPedidoBtn").addEventListener("click", ()=>{
-  const nome = document.getElementById("chkNome").value.trim();
-  const cep = document.getElementById("chkCep").value.trim();
-  const endereco = document.getElementById("chkEndereco").value.trim();
-  const bairro = document.getElementById("chkBairro").value.trim();
-  const cidade = document.getElementById("chkCidade").value.trim();
-
-  if(!nome || !cep || !endereco || !bairro || !cidade){
-    alert("Preencha todos os dados antes de finalizar, por favor.");
-    return;
-  }
-
-  const subtotal = cartSubtotal();
-  const freteTxt = freteEscolhido ? money(freteEscolhido.preco) : "a combinar";
-  const total = subtotal + (freteEscolhido ? freteEscolhido.preco : 0);
-  const pagTxt = "Pix ou Cartão (via link de pagamento)";
-
-  let msg = `Olá! Quero finalizar meu pedido 🙏\n\n*Itens:*\n`;
-  cart.forEach(i => {
-    msg += `• ${i.qtd}x ${i.nome} — ${i.desc} (Tamanho: ${i.tamanho}) — ${money(i.preco*i.qtd)}\n`;
-  });
-  msg += `\n*Subtotal:* ${money(subtotal)}`;
-  msg += `\n*Frete:* ${freteTxt}`;
-  msg += `\n*Total:* ${money(total)}`;
-  msg += `\n\n*Forma de pagamento:* ${pagTxt}`;
-  msg += `\n\n*Dados de entrega:*\n${nome}\n${endereco}, ${bairro}\n${cidade} — CEP: ${cep}`;
-  msg += origemTag();
-
-  const link = `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-  window.open(CARTAO_PAYMENT_LINK, "_blank");
-  window.open(link, "_blank");
-
-  cart = [];
-  saveCart();
-  closeCheckout();
-});
-
-updateCartBadge();
 
 renderHeroCategories();
 renderDevotionRow();
