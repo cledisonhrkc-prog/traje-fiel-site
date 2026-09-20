@@ -832,12 +832,12 @@ const MATERIAL_INFO = {
   F02: "Tecido: Malha Viscolycra — 96% poliéster + 4% elastano."
 };
 
-function wppLink(nome, desc, tamanho, kitFamilia, img, qtd){
+function wppLink(nome, desc, tamanho, kitFamilia, img, qtd, tecido){
   const tamTxt = tamanho ? ` (Tamanho: ${tamanho})` : "";
   const qtdTxt = (qtd && qtd > 1) ? ` — Quantidade: ${qtd} unidades` : "";
   const kitTxt = kitFamilia ? " — Quero saber sobre o kit família (tamanhos adulto e infantil)" : "";
   const fotoTxt = img ? `\n\nFoto do produto: ${SITE_URL}/${img}` : "";
-  const msg = `Olá! Quero comprar a camiseta *${nome} — ${desc}*${tamTxt}${qtdTxt}${kitTxt}${fotoTxt}${origemTag()}`;
+  const tecTxt = tecido ? ` — Tecido: ${tecido}` : " — Tecido: Suede Premium (F01)"; const msg = `Olá! Quero comprar a camiseta *${nome} — ${desc}*${tamTxt}${qtdTxt}${tecTxt}${kitTxt}${fotoTxt}${origemTag()}`;
   return `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 function genericWppLink(){
@@ -938,7 +938,7 @@ function render(){
             <button type="button" class="btn-addcart" data-addcart-id="${p.id}">🛍️ Sacola</button>
             <button type="button" class="btn-share" data-share-id="${p.id}" aria-label="Compartilhar">🔗</button>
           </div>
-          <a class="btn-buy" target="_blank" rel="noopener" href="${wppLink(p.nome, p.desc, p.tamanhos[0], p.kitFamilia, p.img)}" onclick="rastrearCliqueWhatsApp('${p.nome.replace(/'/g,"")}')" style="margin-top:8px;">💬 Comprar no WhatsApp</a>
+          <a class="btn-buy" target="_blank" rel="noopener" href="${wppLink(p.nome, p.desc, p.tamanhos[0], p.kitFamilia, p.img, 1, p.fornecedor === 'F02' ? 'Malha Viscolycra (F02)' : 'Suede Premium (F01)')}" onclick="rastrearCliqueWhatsApp('${p.nome.replace(/'/g,"")}')" style="margin-top:8px;">💬 Comprar no WhatsApp</a>
         </div>`;
       grid.appendChild(card);
     });
@@ -1013,7 +1013,7 @@ document.getElementById("productGrid").addEventListener("click", (e)=>{
   const buyBtn = card.querySelector(".btn-buy");
   const productId = wrap.dataset.productId;
   const p = PRODUCTS.find(x => x.id === productId);
-  buyBtn.setAttribute("href", wppLink(p.nome, p.desc, sizeBtn.dataset.size, p.kitFamilia, p.img));
+  buyBtn.setAttribute("href", wppLink(p.nome, p.desc, sizeBtn.dataset.size, p.kitFamilia, p.img, 1, p.fornecedor === 'F02' ? 'Malha Viscolycra (F02)' : 'Suede Premium (F01)'));
 });
 
 // --- Modal de detalhes do produto ---
@@ -1047,7 +1047,7 @@ function renderMiniMedidas(categoria){
 function updateDetailBuyBtn(){
   const p = detailCurrentProduct;
   const buyBtn = document.getElementById("detailBuyBtn");
-  buyBtn.setAttribute("href", wppLink(p.nome, p.desc, detailSelectedSize, p.kitFamilia, p.img, detailQty));
+  buyBtn.setAttribute("href", wppLink(p.nome, p.desc, detailSelectedSize, p.kitFamilia, p.img, detailQty, p.fornecedor === 'F02' ? 'Malha Viscolycra (F02)' : 'Suede Premium (F01)'));
 }
 
 function openDetail(product){
@@ -1496,5 +1496,6 @@ render();
 </script>
 </body>
 </html>
+
 
 
