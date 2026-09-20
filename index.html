@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -188,7 +188,7 @@
   .product-card:hover .product-media img{transform:scale(1.05);}
   .product-cat-badge{position:absolute;top:12px;left:12px;background:#fff;color:var(--ink);font-size:.7rem;font-weight:700;padding:5px 11px;border-radius:6px;}
   .product-destaque{position:absolute;top:12px;right:12px;background:var(--gold);color:#fff;font-size:.68rem;font-weight:700;padding:5px 10px;border-radius:6px;display:flex;align-items:center;gap:4px;}
-  .product-suede-tag{position:absolute;bottom:12px;left:12px;background:rgba(36,30,27,.82);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:5px;text-transform:uppercase;} .product-suede-tag.tag-viscolycra{background:rgba(110,20,35,.88);color:#fff;}
+  .product-suede-tag{position:absolute;bottom:12px;left:12px;background:rgba(36,30,27,.78);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:5px;}
   .product-hover{position:absolute;inset:0;background:rgba(36,30,27,.45);opacity:0;display:flex;align-items:center;justify-content:center;transition:opacity .25s ease;cursor:pointer;}
   .product-card:hover .product-hover{opacity:1;}
   .product-hover span{background:#fff;color:var(--ink);font-size:.82rem;font-weight:600;padding:10px 18px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;}
@@ -829,7 +829,7 @@ const SITE_URL = "https://trajefiel.com";
 
 const MATERIAL_INFO = {
   F01: "Tecido: Suede Premium — toque aveludado, não desbota e não dá bolinha.",
-  F02: "Tecido: Malha Viscolycra — caimento leve e fluido, toque suave e elasticidade perfeita."
+  F02: "Tecido: Malha Viscolycra — 96% poliéster + 4% elastano."
 };
 
 function wppLink(nome, desc, tamanho, kitFamilia, img, qtd){
@@ -919,7 +919,7 @@ function render(){
           <img loading="lazy" src="${p.img}" alt="${p.nome} - ${p.desc}">
           <span class="product-cat-badge">${p.categoria.charAt(0).toUpperCase()+p.categoria.slice(1)}</span>
           ${destaque ? '<span class="product-destaque">✨ Destaque</span>' : ''}
-          <span class="product-suede-tag ${p.fornecedor === 'F02' ? 'tag-viscolycra' : '}">${p.fornecedor === 'F02' ? 'MALHA VISCOLYCRA' : 'SUEDE PREMIUM'}</span>
+          <span class="product-suede-tag">SUEDE PREMIUM · ${p.fornecedor || 'F01'}</span>
           ${p.kitFamilia ? '<span class="kit-badge">KIT FAMÍLIA</span>' : ''}
           <div class="product-hover"><span>👁 Ver Detalhes</span></div>
         </div>
@@ -1063,7 +1063,7 @@ function openDetail(product){
 
   document.getElementById("detailImg").src = product.img;
   document.getElementById("detailImg").alt = product.nome;
-  document.getElementById("detailCat").textContent = product.categoria.charAt(0).toUpperCase()+product.categoria.slice(1) + " · " + (product.fornecedor === "F02" ? "Malha Viscolycra" : "Suede Premium");
+  document.getElementById("detailCat").textContent = product.categoria.charAt(0).toUpperCase()+product.categoria.slice(1) + " · " + (product.fornecedor || "F01");
   document.getElementById("detailName").textContent = product.nome;
   document.getElementById("detailDesc").textContent = product.desc;
   document.getElementById("detailTags").innerHTML = `<span>${(product.fornecedor === "F02") ? "Malha Viscolycra" : "Suede Premium"}</span>${product.kitFamilia ? '<span>Kit Família</span>' : ''}`;
