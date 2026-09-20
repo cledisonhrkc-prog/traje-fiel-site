@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -919,7 +919,7 @@ function render(){
           <img loading="lazy" src="${p.img}" alt="${p.nome} - ${p.desc}">
           <span class="product-cat-badge">${p.categoria.charAt(0).toUpperCase()+p.categoria.slice(1)}</span>
           ${destaque ? '<span class="product-destaque">✨ Destaque</span>' : ''}
-          <span class="product-suede-tag">SUEDE PREMIUM · ${p.fornecedor || 'F01'}</span>
+          <span class="product-suede-tag">${p.fornecedor === "F02" ? "MALHA VISCOLYCRA" : "SUEDE PREMIUM"}</span>
           ${p.kitFamilia ? '<span class="kit-badge">KIT FAMÍLIA</span>' : ''}
           <div class="product-hover"><span>👁 Ver Detalhes</span></div>
         </div>
@@ -1496,3 +1496,4 @@ render();
 </script>
 </body>
 </html>
+
