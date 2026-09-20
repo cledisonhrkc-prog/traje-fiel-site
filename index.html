@@ -59,14 +59,20 @@
   /* ---------- Header ---------- */
   .topbar{background:var(--wine);color:#fff;text-align:center;font-size:.82rem;padding:9px 16px;}
   .topbar b{color:var(--gold-soft);}
-  header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;max-width:1400px;margin:0 auto;gap:24px;flex-wrap:wrap;}
-  .brand{display:flex;align-items:center;gap:12px;}
-  .brand-mark{width:76px;height:76px;border-radius:50%;border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--wine);font-size:1.2rem;flex-shrink:0;overflow:hidden;}
+  header{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:box-shadow .3s ease;}
+  header.scrolled{box-shadow:0 6px 24px rgba(36,30,27,.08);}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:26px 32px;max-width:1400px;margin:0 auto;gap:24px;flex-wrap:wrap;transition:padding .3s cubic-bezier(0.4, 0, 0.2, 1);}
+  header.scrolled .header-inner{padding:10px 32px;}
+  .brand{display:flex;align-items:center;gap:18px;transition:gap .3s ease;}
+  header.scrolled .brand{gap:12px;}
+  .brand-mark{width:160px;height:160px;border-radius:50%;border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--wine);font-size:1.2rem;flex-shrink:0;overflow:hidden;transition:width .3s cubic-bezier(0.4, 0, 0.2, 1), height .3s cubic-bezier(0.4, 0, 0.2, 1), border-width .3s ease;box-shadow:0 8px 24px rgba(110,20,35,.15);}
+  header.scrolled .brand-mark{width:64px;height:64px;border-width:2px;box-shadow:0 2px 8px rgba(36,30,27,.1);}
   .brand-mark img{width:100%;height:100%;object-fit:cover;}
-  .logo{font-family:'Cinzel',serif;font-size:2rem;font-weight:600;letter-spacing:.02em;line-height:1.1;}
+  .logo{font-family:'Cinzel',serif;font-size:3.2rem;font-weight:600;letter-spacing:.02em;line-height:1.1;transition:font-size .3s cubic-bezier(0.4, 0, 0.2, 1);}
+  header.scrolled .logo{font-size:1.5rem;}
   .logo em{font-style:normal;color:var(--gold);}
-  .tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:.92rem;color:var(--ink-soft);margin-top:2px;}
+  .tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--ink-soft);margin-top:2px;transition:font-size .3s ease,opacity .3s ease;}
+  header.scrolled .tagline{font-size:.82rem;}
   nav{display:flex;gap:26px;align-items:center;flex-wrap:wrap;}
   nav a.navlink{font-size:.92rem;color:var(--ink);font-weight:500;white-space:nowrap;}
   nav a.navlink .cnt{color:var(--gold);font-weight:600;}
@@ -1462,6 +1468,31 @@ updateCartBadge();
 renderHeroCategories();
 renderDevotionRow();
 render();
+// --- Scroll com histerese (anti-tremedeira) para o cabecalho ---
+(function(){
+  var header = document.querySelector("header");
+  if(!header) return;
+  var isScrolled = false;
+  var ticking = false;
+  function updateScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if(!isScrolled && y > 80){
+      isScrolled = true;
+      header.classList.add("scrolled");
+    } else if(isScrolled && y < 30){
+      isScrolled = false;
+      header.classList.remove("scrolled");
+    }
+    ticking = false;
+  }
+  window.addEventListener("scroll", function(){
+    if(!ticking){
+      window.requestAnimationFrame(updateScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+  updateScroll();
+})();
 </script>
 </body>
 </html>
