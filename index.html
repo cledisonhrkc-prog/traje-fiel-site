@@ -224,12 +224,16 @@
   .detail-qty{margin-bottom:16px;}
   .detail-qty .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
   .detail-frete{margin-bottom:20px;}
-  .detail-frete .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
-  .frete-row{display:flex;gap:8px;}
-  .frete-row input{flex:1;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:.9rem;font-family:inherit;}
-  .frete-row button{background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-size:.85rem;font-weight:600;white-space:nowrap;cursor:pointer;transition:background .2s;}
-  .frete-row button:hover{background:var(--wine);}
-  .frete-row button:disabled{opacity:.6;cursor:not-allowed;}
+  .detail-frete .lbl{font-size:.84rem;color:var(--ink);margin-bottom:8px;display:block;}
+  .checkout-cep-group{background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.3);border-radius:10px;padding:14px;margin-bottom:18px;}
+  .checkout-cep-group label{font-size:.86rem;color:var(--wine);font-weight:700;display:block;margin-bottom:8px;}
+  .frete-row{display:flex;gap:10px;align-items:stretch;width:100%;}
+  .frete-row input{flex:1;min-width:130px;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;font-size:1rem;font-family:inherit;background:#fff;color:var(--ink);box-sizing:border-box;transition:border-color .2s,box-shadow .2s;}
+  .frete-row input:focus{outline:none;border-color:var(--wine);box-shadow:0 0 0 3px rgba(110,20,35,.12);}
+  .frete-row button{background:var(--wine);color:#fff;border:none;padding:12px 20px;border-radius:8px;font-size:.9rem;font-weight:700;white-space:nowrap;cursor:pointer;transition:background .2s,opacity .2s;flex-shrink:0;}
+  .frete-row button:hover{background:var(--wine-dark);}
+  .frete-row button:disabled{opacity:.65;cursor:not-allowed;}
+  .cep-help-text{display:block;font-size:.76rem;color:var(--ink-soft);margin-top:6px;line-height:1.35;}
   .frete-resultado{margin-top:10px;font-size:.84rem;}
   .frete-destino-badge{display:inline-flex;align-items:center;gap:6px;background:#F6EFE9;color:var(--wine);font-weight:600;font-size:.78rem;padding:5px 10px;border-radius:6px;margin-bottom:8px;border:1px solid rgba(110,20,35,.15);}
   .frete-opcao{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);}
@@ -310,7 +314,11 @@
   .btn-finalizar{background:#25D366;color:#fff;border:none;border-radius:10px;padding:15px;font-size:.98rem;font-weight:700;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;}
   .checkout-back{background:none;border:none;color:var(--ink-soft);font-size:.85rem;margin-bottom:16px;text-decoration:underline;}
   @media (max-width:600px){
-    .cart-panel,.checkout-panel{max-width:100%;}
+    .cart-panel,.checkout-panel{max-width:100%;padding:20px 16px;}
+    .form-row{flex-direction:column;gap:0;}
+    .form-row .form-group{width:100%;}
+    .frete-row input{font-size:16px;}
+    .form-group input,.form-group select{font-size:16px;padding:12px 14px;}
   }
   .qty-stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
   .qty-stepper button{width:36px;height:36px;background:var(--cream);border:none;font-size:1.1rem;color:var(--ink);}
@@ -784,9 +792,9 @@
         </div>
       </div>
       <div class="detail-frete">
-        <span class="lbl">Calcular frete dos Correios:</span>
+        <span class="lbl"><b>Calcular frete dos Correios:</b></span>
         <div class="frete-row">
-          <input type="text" id="freteCep" placeholder="00000-000" maxlength="9">
+          <input type="tel" inputmode="numeric" id="freteCep" placeholder="00000-000" maxlength="9" autocomplete="postal-code">
           <button type="button" id="freteBtn">Calcular</button>
         </div>
         <div id="freteResultado"></div>
@@ -826,30 +834,33 @@
     </div>
 
     <div class="form-group">
-      <label>Nome completo</label>
-      <input type="text" id="chkNome" placeholder="Seu nome completo">
+      <label for="chkNome">Nome completo</label>
+      <input type="text" id="chkNome" placeholder="Seu nome completo" autocomplete="name">
     </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>CEP</label>
-        <div class="frete-row">
-          <input type="text" id="chkCep" placeholder="00000-000" maxlength="9">
-          <button type="button" id="chkFreteBtn">Calcular frete</button>
-        </div>
+
+    <div class="checkout-cep-group">
+      <label for="chkCep">CEP de entrega (calcula frete e busca endereço)</label>
+      <div class="frete-row">
+        <input type="tel" inputmode="numeric" id="chkCep" placeholder="00000-000" maxlength="9" autocomplete="postal-code">
+        <button type="button" id="chkFreteBtn">Calcular frete</button>
       </div>
-      <div class="form-group" style="flex:2;">
-        <label>Endereço (rua e número)</label>
-        <input type="text" id="chkEndereco" placeholder="Rua, número">
-      </div>
+      <small class="cep-help-text">💡 Digite os 8 números do seu CEP. O cálculo é automático e o endereço será preenchido abaixo.</small>
     </div>
+
     <div id="chkFreteResultado"></div>
+
+    <div class="form-group">
+      <label for="chkEndereco">Endereço completo (rua, número e complemento)</label>
+      <input type="text" id="chkEndereco" placeholder="Ex: Rua das Flores, 123 - Apto 4" autocomplete="street-address">
+    </div>
+
     <div class="form-row">
       <div class="form-group">
-        <label>Bairro</label>
+        <label for="chkBairro">Bairro</label>
         <input type="text" id="chkBairro" placeholder="Bairro">
       </div>
       <div class="form-group">
-        <label>Cidade/UF</label>
+        <label for="chkCidade">Cidade / UF</label>
         <input type="text" id="chkCidade" placeholder="Cidade - UF">
       </div>
     </div>
@@ -1344,6 +1355,18 @@ async function consultarCepEFrete(cepValue){
 
 document.getElementById("freteCep").addEventListener("input", (e)=>{
   e.target.value = formatarCepInput(e.target.value);
+  if(e.target.value.replace(/\D/g,"").length === 8){
+    calcularFreteModal();
+  }
+});
+document.getElementById("freteCep").addEventListener("paste", ()=>{
+  setTimeout(()=>{
+    const el = document.getElementById("freteCep");
+    el.value = formatarCepInput(el.value);
+    if(el.value.replace(/\D/g,"").length === 8){
+      calcularFreteModal();
+    }
+  }, 50);
 });
 
 document.getElementById("freteCep").addEventListener("keydown", (e)=>{
@@ -1749,6 +1772,15 @@ document.getElementById("chkCep").addEventListener("input", (e)=>{
   if(e.target.value.replace(/\D/g,"").length === 8){
     executarCalculoCheckout(true);
   }
+});
+document.getElementById("chkCep").addEventListener("paste", ()=>{
+  setTimeout(()=>{
+    const el = document.getElementById("chkCep");
+    el.value = formatarCepInput(el.value);
+    if(el.value.replace(/\D/g,"").length === 8){
+      executarCalculoCheckout(true);
+    }
+  }, 50);
 });
 
 document.getElementById("chkCep").addEventListener("keydown", (e)=>{
