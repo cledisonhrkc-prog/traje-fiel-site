@@ -227,12 +227,24 @@
   .detail-frete .lbl{font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;display:block;}
   .frete-row{display:flex;gap:8px;}
   .frete-row input{flex:1;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:.9rem;font-family:inherit;}
-  .frete-row button{background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-size:.85rem;font-weight:600;white-space:nowrap;}
-  .frete-row button:disabled{opacity:.6;}
+  .frete-row button{background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-size:.85rem;font-weight:600;white-space:nowrap;cursor:pointer;transition:background .2s;}
+  .frete-row button:hover{background:var(--wine);}
+  .frete-row button:disabled{opacity:.6;cursor:not-allowed;}
   .frete-resultado{margin-top:10px;font-size:.84rem;}
-  .frete-opcao{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);}
+  .frete-destino-badge{display:inline-flex;align-items:center;gap:6px;background:#F6EFE9;color:var(--wine);font-weight:600;font-size:.78rem;padding:5px 10px;border-radius:6px;margin-bottom:8px;border:1px solid rgba(110,20,35,.15);}
+  .frete-opcao{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);}
   .frete-opcao:last-child{border-bottom:none;}
-  .frete-erro{color:#b3261e;font-size:.82rem;margin-top:8px;}
+  .frete-opcao b{color:var(--wine);}
+  .frete-cards-selector{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
+  .frete-card{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;transition:border-color .15s, background .15s;}
+  .frete-card:hover{border-color:var(--wine);background:rgba(110,20,35,.02);}
+  .frete-card.selected{border-color:var(--wine);background:rgba(110,20,35,.05);box-shadow:0 0 0 1px var(--wine);}
+  .frete-card input[type="radio"]{accent-color:var(--wine);margin:0;cursor:pointer;}
+  .frete-card-info{display:flex;flex-direction:column;flex:1;}
+  .frete-card-title{font-size:.84rem;font-weight:700;color:var(--ink);}
+  .frete-card-prazo{font-size:.74rem;color:var(--ink-soft);}
+  .frete-card-price{font-size:.88rem;font-weight:700;color:var(--wine);white-space:nowrap;}
+  .frete-erro{color:#b3261e;font-size:.82rem;margin-top:8px;background:#fde8e8;border:1px solid #f8b4b4;padding:8px 10px;border-radius:6px;}
   .detail-encomenda-box{background:linear-gradient(135deg, rgba(201,162,39,.12) 0%, rgba(110,20,35,.06) 100%);border:1px solid rgba(201,162,39,.35);border-radius:10px;padding:14px 16px;margin-bottom:18px;}
   .encomenda-header{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--wine);font-weight:700;margin-bottom:6px;}
   .detail-encomenda-box p{font-size:.82rem;color:var(--ink-soft);margin:0 0 10px;line-height:1.45;}
@@ -1223,56 +1235,170 @@ document.getElementById("detailSizes").addEventListener("click", (e)=>{
 
 document.getElementById("detailClose").addEventListener("click", closeDetail);
 
-// --- Calculadora de frete (Melhor Envio, via função serverless) ---
-document.getElementById("freteCep").addEventListener("input", (e)=>{
-  let v = e.target.value.replace(/\D/g,"").slice(0,8);
+// --- Calculadora de frete (ViaCEP + Correios PAC / SEDEX) ---
+const FRETE_ESTADOS = {
+  SP: { pac: 16.90, sedex: 21.90, prazoPac: "3 a 5", prazoSedex: "1 a 2" },
+  RJ: { pac: 22.90, sedex: 32.90, prazoPac: "5 a 7", prazoSedex: "2 a 3" },
+  MG: { pac: 22.90, sedex: 32.90, prazoPac: "5 a 7", prazoSedex: "2 a 4" },
+  ES: { pac: 24.90, sedex: 36.90, prazoPac: "6 a 8", prazoSedex: "3 a 4" },
+  PR: { pac: 23.90, sedex: 35.90, prazoPac: "5 a 7", prazoSedex: "2 a 4" },
+  SC: { pac: 25.90, sedex: 38.90, prazoPac: "6 a 8", prazoSedex: "3 a 4" },
+  RS: { pac: 26.90, sedex: 42.90, prazoPac: "6 a 9", prazoSedex: "3 a 5" },
+  DF: { pac: 27.90, sedex: 44.90, prazoPac: "6 a 8", prazoSedex: "2 a 4" },
+  GO: { pac: 27.90, sedex: 45.90, prazoPac: "6 a 9", prazoSedex: "3 a 5" },
+  MS: { pac: 29.90, sedex: 48.90, prazoPac: "7 a 10", prazoSedex: "3 a 5" },
+  MT: { pac: 31.90, sedex: 52.90, prazoPac: "7 a 10", prazoSedex: "3 a 5" },
+  BA: { pac: 29.90, sedex: 52.90, prazoPac: "7 a 11", prazoSedex: "3 a 5" },
+  PE: { pac: 32.90, sedex: 58.90, prazoPac: "8 a 12", prazoSedex: "3 a 6" },
+  CE: { pac: 34.90, sedex: 62.90, prazoPac: "8 a 12", prazoSedex: "3 a 6" },
+  RN: { pac: 34.90, sedex: 64.90, prazoPac: "8 a 13", prazoSedex: "4 a 6" },
+  PB: { pac: 34.90, sedex: 64.90, prazoPac: "8 a 13", prazoSedex: "4 a 6" },
+  AL: { pac: 34.90, sedex: 62.90, prazoPac: "8 a 13", prazoSedex: "4 a 6" },
+  SE: { pac: 33.90, sedex: 59.90, prazoPac: "8 a 12", prazoSedex: "4 a 6" },
+  MA: { pac: 36.90, sedex: 68.90, prazoPac: "9 a 14", prazoSedex: "4 a 6" },
+  PI: { pac: 35.90, sedex: 66.90, prazoPac: "9 a 14", prazoSedex: "4 a 6" },
+  PA: { pac: 39.90, sedex: 76.90, prazoPac: "10 a 16", prazoSedex: "4 a 7" },
+  AM: { pac: 44.90, sedex: 84.90, prazoPac: "11 a 18", prazoSedex: "4 a 7" },
+  RO: { pac: 39.90, sedex: 74.90, prazoPac: "10 a 15", prazoSedex: "4 a 7" },
+  AC: { pac: 46.90, sedex: 89.90, prazoPac: "12 a 20", prazoSedex: "5 a 8" },
+  RR: { pac: 48.90, sedex: 92.90, prazoPac: "12 a 20", prazoSedex: "5 a 8" },
+  AP: { pac: 44.90, sedex: 84.90, prazoPac: "11 a 18", prazoSedex: "5 a 8" },
+  TO: { pac: 34.90, sedex: 64.90, prazoPac: "8 a 13", prazoSedex: "4 a 6" }
+};
+
+function formatarCepInput(val){
+  let v = (val || "").replace(/\D/g,"").slice(0,8);
   if(v.length > 5) v = v.slice(0,5) + "-" + v.slice(5);
-  e.target.value = v;
+  return v;
+}
+
+function ufPorCep(cepClean){
+  const n = parseInt((cepClean || "").slice(0, 2), 10);
+  if(n >= 1 && n <= 19) return "SP";
+  if(n >= 20 && n <= 28) return "RJ";
+  if(n === 29) return "ES";
+  if(n >= 30 && n <= 39) return "MG";
+  if(n >= 40 && n <= 48) return "BA";
+  if(n === 49) return "SE";
+  if(n >= 50 && n <= 56) return "PE";
+  if(n === 57) return "AL";
+  if(n === 58) return "PB";
+  if(n === 59) return "RN";
+  if(n >= 60 && n <= 63) return "CE";
+  if(n === 64) return "PI";
+  if(n === 65) return "MA";
+  if(n >= 66 && n <= 68) return "PA";
+  if(n === 69){
+    const sub = parseInt((cepClean || "").slice(0, 3), 10);
+    if(sub === 693) return "RR";
+    if(sub === 699) return "AC";
+    return "AM";
+  }
+  if(n >= 70 && n <= 72) return "DF";
+  if(n >= 73 && n <= 76) return "GO";
+  if(n === 77) return "TO";
+  if(n === 78) return "MT";
+  if(n === 79) return "MS";
+  if(n >= 80 && n <= 87) return "PR";
+  if(n >= 88 && n <= 89) return "SC";
+  if(n >= 90 && n <= 99) return "RS";
+  return "SP";
+}
+
+async function consultarCepEFrete(cepValue){
+  const cep = (cepValue || "").replace(/\D/g, "");
+  if(cep.length !== 8) return null;
+
+  let endereco = null;
+  try{
+    const ctrl = new AbortController();
+    const timeout = setTimeout(()=>ctrl.abort(), 3500);
+    const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`, { signal: ctrl.signal });
+    clearTimeout(timeout);
+    if(resp.ok){
+      const data = await resp.json();
+      if(!data.erro) endereco = data;
+    }
+  }catch(e){}
+
+  const uf = (endereco && endereco.uf) ? endereco.uf.toUpperCase() : ufPorCep(cep);
+  const info = FRETE_ESTADOS[uf] || { pac: 26.90, sedex: 42.90, prazoPac: "6 a 9", prazoSedex: "3 a 5" };
+
+  const opcoes = [
+    {
+      transportadora: "Correios",
+      servico: "PAC",
+      preco: info.pac,
+      prazoDias: `${info.prazoPac} dias úteis`
+    },
+    {
+      transportadora: "Correios",
+      servico: "SEDEX",
+      preco: info.sedex,
+      prazoDias: `${info.prazoSedex} dias úteis`
+    }
+  ];
+
+  return { cep, uf, endereco, opcoes };
+}
+
+document.getElementById("freteCep").addEventListener("input", (e)=>{
+  e.target.value = formatarCepInput(e.target.value);
 });
 
-async function calcularFrete(cepValue, resultDiv, btn){
-  const cep = cepValue.replace(/\D/g,"");
-  if(cep.length !== 8){
-    resultDiv.innerHTML = `<div class="frete-erro">Digite um CEP válido (8 números).</div>`;
-    return null;
+document.getElementById("freteCep").addEventListener("keydown", (e)=>{
+  if(e.key === "Enter"){
+    e.preventDefault();
+    document.getElementById("freteBtn").click();
   }
+});
+
+async function calcularFreteModal(){
+  const cepInput = document.getElementById("freteCep");
+  const resultDiv = document.getElementById("freteResultado");
+  const btn = document.getElementById("freteBtn");
+  const cepClean = (cepInput.value || "").replace(/\D/g,"");
+
+  if(cepClean.length !== 8){
+    resultDiv.innerHTML = `<div class="frete-erro">Digite um CEP válido com 8 números (ex: 13480-000).</div>`;
+    return;
+  }
+
   const originalText = btn.textContent;
   btn.disabled = true;
   btn.textContent = "Calculando...";
   resultDiv.innerHTML = "";
-  let opcoes = null;
+
   try{
-    const resp = await fetch("/api/frete", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({ cepDestino: cep })
-    });
-    const data = await resp.json();
-    if(!resp.ok || data.erro){
-      resultDiv.innerHTML = `<div class="frete-erro">Não foi possível calcular agora. Confirme o valor direto no WhatsApp.</div>`;
-    } else if(!data.opcoes || data.opcoes.length === 0){
-      resultDiv.innerHTML = `<div class="frete-erro">Nenhuma opção de envio encontrada pra esse CEP.</div>`;
+    const res = await consultarCepEFrete(cepClean);
+    if(!res){
+      resultDiv.innerHTML = `<div class="frete-erro">Não foi possível calcular para este CEP. Verifique o número digitado.</div>`;
     } else {
-      opcoes = data.opcoes;
-      resultDiv.innerHTML = `<div class="frete-resultado">` +
-        opcoes.map(o => `<div class="frete-opcao"><span>${o.transportadora} — ${o.servico} (${o.prazoDias} dias úteis)</span><span><b>${money(o.preco)}</b></span></div>`).join("") +
-        `<div class="frete-aviso-encomenda">⚠️ <b>Atenção ao prazo total:</b> O prazo da transportadora acima começa a contar <b>após o período de confecção sob encomenda (5 a 7 dias úteis)</b>.</div>` +
-        `</div>`;
+      const cidadeTxt = res.endereco ? `${res.endereco.localidade} - ${res.endereco.uf}${res.endereco.bairro ? ` (${res.endereco.bairro})` : ""}` : `Estado: ${res.uf}`;
+      resultDiv.innerHTML = `
+        <div class="frete-resultado">
+          <div class="frete-destino-badge">📍 Entrega para: <b>${cidadeTxt}</b></div>
+          ${res.opcoes.map(o => `
+            <div class="frete-opcao">
+              <span>${o.servico === 'SEDEX' ? '⚡' : '📦'} <b>${o.transportadora} ${o.servico}</b> (${o.prazoDias})</span>
+              <span><b>${money(o.preco)}</b></span>
+            </div>
+          `).join("")}
+          <div class="frete-aviso-encomenda">
+            ⚠️ <b>Atenção ao prazo total:</b> O prazo dos Correios acima começa a contar <b>após o período de confecção sob encomenda (5 a 7 dias úteis)</b>.
+          </div>
+        </div>
+      `;
     }
-  } catch(err){
-    resultDiv.innerHTML = `<div class="frete-erro">Erro de conexão. Confirme o valor direto no WhatsApp.</div>`;
+  }catch(err){
+    resultDiv.innerHTML = `<div class="frete-erro">Erro ao calcular frete. Confirme o valor direto no WhatsApp.</div>`;
   }
+
   btn.disabled = false;
   btn.textContent = originalText;
-  return opcoes;
 }
 
-document.getElementById("freteBtn").addEventListener("click", ()=>{
-  const cepInput = document.getElementById("freteCep");
-  const resultDiv = document.getElementById("freteResultado");
-  const btn = document.getElementById("freteBtn");
-  calcularFrete(cepInput.value, resultDiv, btn);
-});
+document.getElementById("freteBtn").addEventListener("click", calcularFreteModal);
 detailOverlay.addEventListener("click", (e)=>{
   if(e.target === detailOverlay) closeDetail();
 });
@@ -1494,9 +1620,18 @@ function renderCheckoutSummary(){
 function openCheckout(){
   if(cart.length === 0) return;
   closeCart();
-  freteEscolhido = null;
-  document.getElementById("chkFreteResultado").innerHTML = "";
-  // reseta forma de pagamento pro padrao (Pix) a cada abertura
+
+  // Sincroniza com CEP já digitado no modal do produto, se houver
+  const cepModal = (document.getElementById("freteCep").value || "").trim();
+  const chkCepInput = document.getElementById("chkCep");
+  if(cepModal && !chkCepInput.value){
+    chkCepInput.value = cepModal;
+    setTimeout(() => { executarCalculoCheckout(true); }, 150);
+  } else if(chkCepInput.value.replace(/\D/g,"").length === 8 && !freteEscolhido){
+    setTimeout(() => { executarCalculoCheckout(true); }, 150);
+  }
+
+  // Reseta forma de pagamento pro padrao (Pix/Cartao) a cada abertura
   pagamentoEscolhido = "cartao";
   document.querySelectorAll(".payment-opt").forEach(o=>o.classList.toggle("active", o.dataset.pay==="cartao"));
   renderCheckoutSummary();
@@ -1522,15 +1657,109 @@ document.querySelectorAll(".payment-opt").forEach(opt=>{
   });
 });
 
-document.getElementById("chkFreteBtn").addEventListener("click", async ()=>{
+async function executarCalculoCheckout(silencioso = false){
   const cepInput = document.getElementById("chkCep");
   const resultDiv = document.getElementById("chkFreteResultado");
   const btn = document.getElementById("chkFreteBtn");
-  const opcoes = await calcularFrete(cepInput.value, resultDiv, btn);
-  if(opcoes && opcoes.length > 0){
-    freteEscolhido = opcoes[0];
-    renderCheckoutSummary();
+  const cepClean = (cepInput.value || "").replace(/\D/g, "");
+
+  if(cepClean.length !== 8){
+    if(!silencioso){
+      resultDiv.innerHTML = `<div class="frete-erro">Digite um CEP válido com 8 números (ex: 13480-000).</div>`;
+    }
+    return;
   }
+
+  const origText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "Calculando...";
+
+  try{
+    const res = await consultarCepEFrete(cepClean);
+    if(!res){
+      resultDiv.innerHTML = `<div class="frete-erro">Não foi possível calcular o frete para este CEP.</div>`;
+    } else {
+      // Auto-preenche endereço retornado pelo ViaCEP
+      if(res.endereco){
+        const endInput = document.getElementById("chkEndereco");
+        const bairroInput = document.getElementById("chkBairro");
+        const cidInput = document.getElementById("chkCidade");
+        if(res.endereco.logradouro && !endInput.value) endInput.value = res.endereco.logradouro;
+        if(res.endereco.bairro && !bairroInput.value) bairroInput.value = res.endereco.bairro;
+        if(res.endereco.localidade) cidInput.value = `${res.endereco.localidade} - ${res.endereco.uf}`;
+      } else {
+        const cidInput = document.getElementById("chkCidade");
+        if(!cidInput.value) cidInput.value = res.uf;
+      }
+
+      // Define opção padrão (PAC ou mantém o tipo escolhido)
+      let selIndex = 0;
+      if(freteEscolhido){
+        const matchIdx = res.opcoes.findIndex(o => o.servico === freteEscolhido.servico);
+        if(matchIdx >= 0) selIndex = matchIdx;
+      }
+      freteEscolhido = res.opcoes[selIndex];
+
+      const cidadeTxt = res.endereco ? `${res.endereco.localidade} - ${res.endereco.uf}` : `Estado: ${res.uf}`;
+
+      resultDiv.innerHTML = `
+        <div class="frete-resultado" style="margin-top:10px;">
+          <div class="frete-destino-badge">📍 Destino identificado: <b>${cidadeTxt}</b></div>
+          <div class="frete-cards-selector">
+            ${res.opcoes.map((o, idx) => `
+              <label class="frete-card ${idx === selIndex ? 'selected' : ''}">
+                <input type="radio" name="checkoutFreteOpt" value="${idx}" ${idx === selIndex ? 'checked' : ''}>
+                <div class="frete-card-info">
+                  <span class="frete-card-title">${o.servico === 'SEDEX' ? '⚡' : '📦'} ${o.transportadora} ${o.servico}</span>
+                  <span class="frete-card-prazo">Prazo dos Correios: ${o.prazoDias}</span>
+                </div>
+                <div class="frete-card-price">${money(o.preco)}</div>
+              </label>
+            `).join("")}
+          </div>
+          <div class="frete-aviso-encomenda" style="margin-top:8px;">
+            ⏱️ <b>Prazo total do pedido:</b> 5 a 7 dias úteis de confecção sob encomenda + prazo do frete selecionado.
+          </div>
+        </div>
+      `;
+
+      resultDiv.querySelectorAll("input[name='checkoutFreteOpt']").forEach(radio => {
+        radio.addEventListener("change", (e) => {
+          const idx = parseInt(e.target.value, 10);
+          freteEscolhido = res.opcoes[idx];
+          resultDiv.querySelectorAll(".frete-card").forEach((c, cIdx) => {
+            c.classList.toggle("selected", cIdx === idx);
+          });
+          renderCheckoutSummary();
+        });
+      });
+
+      renderCheckoutSummary();
+    }
+  }catch(e){
+    resultDiv.innerHTML = `<div class="frete-erro">Erro de conexão ao consultar frete. Confirme o valor direto no WhatsApp.</div>`;
+  }
+
+  btn.disabled = false;
+  btn.textContent = origText;
+}
+
+document.getElementById("chkCep").addEventListener("input", (e)=>{
+  e.target.value = formatarCepInput(e.target.value);
+  if(e.target.value.replace(/\D/g,"").length === 8){
+    executarCalculoCheckout(true);
+  }
+});
+
+document.getElementById("chkCep").addEventListener("keydown", (e)=>{
+  if(e.key === "Enter"){
+    e.preventDefault();
+    executarCalculoCheckout(false);
+  }
+});
+
+document.getElementById("chkFreteBtn").addEventListener("click", ()=>{
+  executarCalculoCheckout(false);
 });
 
 document.getElementById("finalizarPedidoBtn").addEventListener("click", ()=>{
@@ -1541,13 +1770,14 @@ document.getElementById("finalizarPedidoBtn").addEventListener("click", ()=>{
   const cidade = document.getElementById("chkCidade").value.trim();
 
   if(!nome || !cep || !endereco || !bairro || !cidade){
-    alert("Preencha todos os dados antes de finalizar, por favor.");
+    alert("Preencha todos os dados de entrega antes de finalizar, por favor.");
     return;
   }
 
   const subtotal = cartSubtotal();
-  const freteTxt = freteEscolhido ? money(freteEscolhido.preco) : "a combinar";
-  const total = subtotal + (freteEscolhido ? freteEscolhido.preco : 0);
+  const freteTxt = freteEscolhido ? `${freteEscolhido.transportadora} ${freteEscolhido.servico} (${money(freteEscolhido.preco)} — prazo: ${freteEscolhido.prazoDias})` : "a combinar no WhatsApp";
+  const freteValor = freteEscolhido ? freteEscolhido.preco : 0;
+  const total = subtotal + freteValor;
   const pagTxt = "Pix ou Cartão (via link de pagamento)";
 
   let msg = `Olá! Quero finalizar meu pedido sob encomenda 🙏\n\n*Itens sob encomenda (prazo de confecção: 5 a 7 dias úteis):*\n`;
@@ -1557,7 +1787,7 @@ document.getElementById("finalizarPedidoBtn").addEventListener("click", ()=>{
   msg += `\n*Subtotal:* ${money(subtotal)}`;
   msg += `\n*Frete:* ${freteTxt}`;
   msg += `\n*Total:* ${money(total)}`;
-  msg += `\n*Prazo total:* 5 a 7 dias úteis de confecção + prazo de envio dos Correios`;
+  msg += `\n*Prazo total do pedido:* 5 a 7 dias úteis de confecção sob encomenda${freteEscolhido ? ` + ${freteEscolhido.prazoDias} dos Correios` : ""}`;
   msg += `\n\n*Forma de pagamento:* ${pagTxt}`;
   msg += `\n\n*Dados de entrega:*\n${nome}\n${endereco}, ${bairro}\n${cidade} — CEP: ${cep}`;
   msg += origemTag();
